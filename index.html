@@ -58,6 +58,10 @@
       border: 2px solid var(--pri); border-radius: 16px; padding: 16px;
       box-shadow: 0 8px 25px rgba(56,189,248,0.2); position: relative; overflow: hidden;
     }
+    .ad-badge {
+      display: inline-block; font-size: 12px; font-weight: 700; padding: 2px 8px;
+      border-radius: 4px; background: #1e3a8a; color: #93c5fd; margin-bottom: 6px;
+    }
     .anim-zoom { animation: animZoom 4s ease-in-out infinite alternate; }
     .anim-slide { animation: animSlide 4.5s ease-in-out infinite alternate; border-color: var(--gold); }
     .anim-glow { animation: animGlow 3.5s ease-in-out infinite alternate; border-color: var(--ok); }
@@ -225,6 +229,7 @@
     <marquee class="ticker-text" id="mainSlideTicker" scrollamount="6">શાંતિકુંજ બંગ્લોઝ પરિવારમાં આપનું હાર્દિક સ્વાગત છે...</marquee>
   </div>
 
+  <!-- Motion Ads Grid (Rule: Slot 1, 2, 3) -->
   <div class="motion-ads-grid no-print" id="motionAdsBox"></div>
 
   <nav class="nav no-print">
@@ -297,6 +302,7 @@
     </div>
   </main>
 
+  <!-- Complaint Section -->
   <section id="complaintSection" class="hidden">
     <div style="max-width:640px; margin:auto; background:#0d1e34; border:1.5px solid var(--line); border-radius:18px; padding:24px;">
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; border-bottom:1px solid var(--line); padding-bottom:8px;">
@@ -318,8 +324,15 @@
           <div id="cpMemberName" style="color:#fff; font-size:15px; margin-top:6px;"></div>
         </div>
 
-        <label style="font-weight:600; color:var(--muted)">વિષય પસંદ કરો:</label>
-        <select id="cpSubject" class="input"></select>
+        <label style="font-weight:600; color:var(--muted)">વિષય (જવાબદારી) પસંદ કરો:</label>
+        <select id="cpSubject" class="input" onchange="onComplaintSubjectChange()"></select>
+
+        <!-- Dynamic Responsible Committee Member Display -->
+        <div id="cpAssignedInfoBox" class="hidden" style="background:#091b2c; border:1.5px solid var(--pri); border-radius:10px; padding:12px; margin-bottom:14px;">
+          <div style="font-size:14px; color:var(--gold); font-weight:700;"><i class="fa-solid fa-user-shield"></i> આ બાબતે જવાબદાર કમિટી સભ્ય:</div>
+          <div id="cpAssignedName" style="font-size:17px; font-weight:700; color:#fff; margin:4px 0;"></div>
+          <div id="cpAssignedContact" style="font-size:15px; color:var(--muted);"></div>
+        </div>
 
         <label style="font-weight:600; color:var(--muted)">વિગતવાર ફરિયાદ:</label>
         <textarea id="cpDesc" class="input" rows="4" placeholder="અહીં આપની વિગત લખો..."></textarea>
@@ -347,6 +360,7 @@
   </div>
 </footer>
 
+<!-- Admin Modal -->
 <div id="adminModal" class="modal hidden">
   <div class="modal-box">
     <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1.5px solid var(--line); padding-bottom:10px; margin-bottom:16px;">
@@ -372,11 +386,11 @@
         <button class="btn" id="btnAdmTabAnn" onclick="switchAdmTab('ann')">જાહેરાતો</button>
         <button class="btn" id="btnAdmTabMeet" onclick="switchAdmTab('meet')">મીટિંગ</button>
         <button class="btn" id="btnAdmTabComp" onclick="switchAdmTab('comp')">ફરિયાદો</button>
-        <button class="btn" id="btnAdmTabPhoto" onclick="switchAdmTab('photo')">કમિટી ફોટો</button>
+        <button class="btn" id="btnAdmTabPhoto" onclick="switchAdmTab('photo')">કમિટી ફોટો & જવાબદારી</button>
         <button class="btn red" onclick="adminLogout()">લૉગ આઉટ</button>
       </div>
 
-      <!-- Tab 1: Entry -->
+      <!-- Tab 1: Direct Entry -->
       <div id="admTabEntryView">
         <div style="background:#0c1d31; border:1px solid var(--line); border-radius:14px; padding:18px;">
           <h3>સીધી આવક / જાવક એન્ટ્રી ઉમેરો</h3>
@@ -419,10 +433,10 @@
         </div>
       </div>
 
-      <!-- Tab 3: Summary (સરવૈયું) -->
+      <!-- Tab 3: Summary -->
       <div id="admTabSummaryView" class="hidden">
         <div style="background:#0c1d31; border:1px solid var(--line); border-radius:14px; padding:18px;">
-          <h3><i class="fa-solid fa-file-invoice"></i> માસવાર હિસાબ સરવૈયું (રિપોર્ટ ડાઉનલોડ)</h3>
+          <h3><i class="fa-solid fa-file-invoice"></i> માસવાર હિસાબ સરવૈયું</h3>
           <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
             <div>
               <label style="color:var(--muted)">આ માસ થી (From):</label>
@@ -434,7 +448,7 @@
             </div>
           </div>
           <div style="display:flex; gap:10px; margin-top:10px; flex-wrap:wrap;">
-            <button class="btn green" onclick="fetchMultiMonthSummary()"><i class="fa-solid fa-magnifying-glass"></i> સરવૈયું જુઓ</button>
+            <button class="btn green" onclick="fetchMultiMonthSummary()"><i class="fa-solid fa-magnifying-glass"></i> સરવૈયું શોધો</button>
             <button class="btn gold" onclick="exportSummaryCSV()"><i class="fa-solid fa-file-excel"></i> એક્સેલ (CSV) ડાઉનલોડ</button>
             <button class="btn" onclick="printMultiSummary()"><i class="fa-solid fa-print"></i> પ્રિન્ટ / PDF ડાઉનલોડ</button>
           </div>
@@ -451,15 +465,23 @@
         </div>
       </div>
 
-      <!-- Tab 5: Announcements -->
+      <!-- Tab 5: Announcements (Slots 1, 2, 3) -->
       <div id="admTabAnnView" class="hidden">
         <div style="background:#0c1d31; border:1px solid var(--line); border-radius:14px; padding:18px;">
           <h3 id="annFormTitle">જાહેરાત ઉમેરો</h3>
           <input type="hidden" id="annEditId" value="">
+          
+          <label style="color:var(--muted); font-size:15px;">જાહેરાતનું સ્થાન (Rule / Slot):</label>
+          <select id="annSlot" class="input">
+            <option value="1">જાહેરાત ૧ (પ્રથમ સ્લોટ / ડાબી બાજુ)</option>
+            <option value="2">જાહેરાત ૨ (બીજો સ્લોટ / જમણી બાજુ)</option>
+            <option value="3">જાહેરાત ૩ (ત્રીજો સ્લોટ)</option>
+          </select>
+
           <input id="annSub" class="input" placeholder="વિષય">
           <textarea id="annMsg" class="input" rows="3" placeholder="જાહેરાત લખાણ"></textarea>
           
-          <label style="color:var(--muted); font-size:15px;">જાહેરાતમાં ફોટો ઉમેરો (વૈકલ્પિક):</label>
+          <label style="color:var(--muted); font-size:15px;">જાહેરાતમાં ફોટો ઉમેરો (ઓટો-કોમ્પ્રેસ થશે):</label>
           <input type="file" id="annPhotoFile" class="input" accept="image/*" onchange="previewAnnPhoto(this)">
           <div id="annPhotoPreview" style="margin:6px 0;"></div>
 
@@ -492,34 +514,36 @@
         </div>
       </div>
 
-      <!-- Tab 7: Complaints -->
+      <!-- Tab 7: Complaints (Pending vs Completed Split + Export) -->
       <div id="admTabCompView" class="hidden">
         <div style="background:#0c1d31; border:1px solid var(--line); border-radius:14px; padding:18px;">
-          <h3>ફરિયાદ પોર્ટલ નિયંત્રણ</h3>
-          
-          <!-- Filters -->
-          <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; margin-bottom:14px;">
-            <select id="fltCompStatus" class="input" onchange="applyComplaintFilter()">
-              <option value="all">બધી સ્થિતિ (All Status)</option>
-              <option value="પેન્ડિંગ">પેન્ડિંગ (Pending)</option>
-              <option value="પૂર્ણ">પૂર્ણ (Completed)</option>
-            </select>
-            <input id="fltCompHouse" class="input" type="number" placeholder="મકાન નંબર ફિલ્ટર" oninput="applyComplaintFilter()">
-            <input id="fltCompSubject" class="input" placeholder="વિષય ફિલ્ટર" oninput="applyComplaintFilter()">
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; margin-bottom:12px;">
+            <h3 style="margin:0;">ફરિયાદ પોર્ટલ નિયંત્રણ</h3>
+            <button class="btn gold" onclick="exportComplaintsCSV()"><i class="fa-solid fa-file-excel"></i> ફરિયાદ રિપોર્ટ ડાઉનલોડ (Excel/CSV)</button>
           </div>
 
-          <div id="admCompList"></div>
+          <div style="background:#132438; border-radius:12px; padding:14px; margin-bottom:16px;">
+            <h4 style="margin:0 0 10px; color:var(--danger);"><i class="fa-solid fa-clock"></i> પેન્ડિંગ કામગીરી (Pending)</h4>
+            <div id="admCompPendingList"></div>
+          </div>
+
+          <div style="background:#132438; border-radius:12px; padding:14px;">
+            <h4 style="margin:0 0 10px; color:var(--ok);"><i class="fa-solid fa-circle-check"></i> પૂર્ણ થયેલ કામગીરી લિસ્ટ (Completed)</h4>
+            <div id="admCompCompletedList"></div>
+          </div>
         </div>
       </div>
 
-      <!-- Tab 8: Photos -->
+      <!-- Tab 8: Committee Photos & Responsibility -->
       <div id="admTabPhotoView" class="hidden">
         <div style="background:#0c1d31; border:1px solid var(--line); border-radius:14px; padding:18px;">
-          <h3>કમિટી સભ્ય ફોટો & વિગત</h3>
+          <h3>કમિટી સભ્ય ફોટો & જવાબદારી ફાળવણી</h3>
+          <p style="color:var(--muted); font-size:14px; margin:0 0 10px;">અહીં જે જવાબદારી લખશો, તે સભ્યો માટે ફરિયાદ પોર્ટલમાં વિષય તરીકે દેખાશે.</p>
           <select id="admMemberSelect" class="input" onchange="onAdminMemberChange()"></select>
           <input type="file" id="admMemberPhotoFile" class="input" accept="image/*" onchange="previewPhoto(this)">
           <div id="photoPreview" style="margin:10px 0; text-align:center;"></div>
-          <input id="admMemberDuty" class="input" placeholder="જવાબદારી">
+          <label style="color:var(--muted)">સોંપેલ જવાબદારી (દા.ત. લાઈટ-પાણી, ગટર-બ્લોક, હિસાબ):</label>
+          <input id="admMemberDuty" class="input" placeholder="જવાબદારી દાખલ કરો">
           <button class="btn green" onclick="saveMemberPhoto()">અપડેટ કરો</button>
         </div>
       </div>
@@ -530,10 +554,9 @@
 <div id="toast" class="toast hidden"></div>
 
 <script>
-  // તમારી Web App API Endpoint URL જોડી દીધી છે[cite: 6]
+  // તમારી સાચી API Web App લિંક અહીં સેટ છે[cite: 6]
   const API_URL = "https://script.google.com/macros/s/AKfycbwCaiHsw_XV8YKsJXLFMdZEqARFwdgoPDSL4Lw5sClVq809M3IUF-ZEQUccdlFo3Mn8/exec";
 
-  // Robust Unified Google Script Wrapper[cite: 6]
   const google = {
     script: {
       run: {
@@ -545,9 +568,7 @@
                   if (failureCb) failureCb(new Error("API URL સેટ કરેલી નથી."));
                   return;
                 }
-                
                 const isHeavy = payload && JSON.stringify(payload).length > 1500;
-                
                 if (isHeavy) {
                   fetch(API_URL, {
                     method: 'POST',
@@ -565,7 +586,6 @@
                   const q = new URLSearchParams({ action, ...params });
                   if (payload) q.append('payload', JSON.stringify(payload));
                   const url = API_URL + (API_URL.includes('?') ? '&' : '?') + q.toString();
-
                   fetch(url, { method: 'GET', redirect: 'follow' })
                     .then(res => res.json())
                     .then(res => {
@@ -686,7 +706,7 @@
   function loadPortalData() {
     google.script.run.withSuccessHandler(d => {
       if (d && d.error) { toast('ભૂલ: ' + d.error); return; }
-      DATA = d || {monthsList:[],announcements:[],meetings:[],committee:[]};
+      DATA = d || {monthsList:[],announcements:[],meetings:[],committee:[],duties:[]};
       renderAnnouncements(DATA.announcements);
       renderCommittee();
       setupYearDropdownInstant();
@@ -713,14 +733,15 @@
     }
 
     const ticker = document.getElementById('mainSlideTicker');
-    if (ticker) ticker.textContent = list.map(a => `📌 ${a.subject}: ${a.message}`).join('   •••   ');
+    if (ticker) ticker.textContent = list.map(a => `📌 [સ્લોટ ${a.slot||1}] ${a.subject}: ${a.message}`).join('   •••   ');
 
     const animClasses = ['anim-zoom', 'anim-slide', 'anim-glow'];
     box.innerHTML = list.map((a, i) => {
       const anim = animClasses[i % animClasses.length];
       return `
         <div class="ad-card ${anim}">
-          <h3><i class="fa-solid fa-bullhorn"></i> ${a.subject}</h3>
+          <span class="ad-badge"><i class="fa-solid fa-bullhorn"></i> જાહેરાત ${a.slot || (i + 1)}</span>
+          <h3>${a.subject}</h3>
           <p>${a.message}</p>
           ${a.photo ? `<img src="${a.photo}" alt="Ad Photo">` : ''}
         </div>
@@ -897,6 +918,7 @@
     `).join('');
   }
 
+  // --- Complaint & Responsible Member Display ---
   function lookupComplaintHouse() {
     const h = document.getElementById('cpHouse').value;
     const m = document.getElementById('cpMobile').value;
@@ -910,8 +932,28 @@
       document.getElementById('cpStep2').classList.remove('hidden');
 
       const sBox = document.getElementById('cpSubject');
-      sBox.innerHTML = '<option value="">વિષય પસંદ કરો</option>' + (DATA?.duties || []).map(d => `<option value="${d.subject}">${d.subject}</option>`).join('') + '<option value="અન્ય">અન્ય...</option>';
+      sBox.innerHTML = '<option value="">વિષય (જવાબદારી) પસંદ કરો</option>' + 
+        (DATA?.duties || []).map(d => `<option value="${d.subject}">${d.subject}</option>`).join('') + 
+        '<option value="સામાન્ય / અન્ય">સામાન્ય / અન્ય...</option>';
+      onComplaintSubjectChange();
     }).withFailureHandler(err => toast(err.message)).verifyMemberHouse(h, m);
+  }
+
+  function onComplaintSubjectChange() {
+    const s = document.getElementById('cpSubject').value;
+    const infoBox = document.getElementById('cpAssignedInfoBox');
+    if (!s || s === 'સામાન્ય / અન્ય') {
+      infoBox.classList.add('hidden');
+      return;
+    }
+    const matched = DATA?.duties?.find(d => d.subject === s);
+    if (matched) {
+      document.getElementById('cpAssignedName').textContent = `${matched.assignedName} (${matched.post})`;
+      document.getElementById('cpAssignedContact').innerHTML = `સંપર્ક: <a href="tel:${matched.mobile}" style="color:var(--pri); font-weight:700;">${matched.mobile}</a> | <a href="https://wa.me/91${matched.mobile}" target="_blank" style="color:var(--ok); font-weight:700;"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>`;
+      infoBox.classList.remove('hidden');
+    } else {
+      infoBox.classList.add('hidden');
+    }
   }
 
   function submitComplaint() {
@@ -921,12 +963,15 @@
     const d = document.getElementById('cpDesc').value;
     if (!s || !d) return toast('વિષય અને ફરિયાદ વિગત દાખલ કરો.');
 
+    const matched = DATA?.duties?.find(x => x.subject === s);
+    const assigned = matched ? `${matched.assignedName} (${matched.mobile})` : 'વ્યવસ્થાપક સમિતિ';
+
     google.script.run.withSuccessHandler(r => {
       document.getElementById('cpResult').innerHTML = `<div style="background:#064e3b; padding:14px; border-radius:10px; color:#a7f3d0; font-size:17px;">ફરિયાદ સફળતાપૂર્વક નોંધાઈ ગઈ છે. અરજી ક્રમાંક: <b>${r.id}</b></div>`;
       document.getElementById('cpStep2').classList.add('hidden');
       document.getElementById('cpDesc').value = '';
       setTimeout(() => switchSection('home'), 4000);
-    }).withFailureHandler(err => toast(err.message)).registerComplaint({ houseNo: h, mobile: m, subject: s, desc: d });
+    }).withFailureHandler(err => toast(err.message)).registerComplaint({ houseNo: h, mobile: m, subject: s, desc: d, assignedTo: assigned });
   }
 
   function switchSection(sec) {
@@ -1052,7 +1097,7 @@
     }).withFailureHandler(err=>toast(err.message||err)).adminSaveMonthControl(APASS,code,name,isPub);
   }
 
-  // --- Summary (સરવૈયું) Management ---
+  // --- Multi-Month Summary Rule (2+ Months = Only Balances) ---
   function populateSummarySelectors() {
     const sFrom = document.getElementById('smFromMonth');
     const sTo = document.getElementById('smToMonth');
@@ -1079,46 +1124,86 @@
       box.innerHTML = '<div style="color:var(--muted)">આ સમયગાળામાં કોઈ હિસાબ મળ્યો નથી.</div>';
       return;
     }
-    box.innerHTML = `
-      <div id="multiSummaryPrintArea" class="sheet-paper" style="color:#000;">
-        <h3 style="text-align:center; margin:0 0 10px;">શાંતિકુંજ બંગ્લોઝ, વિજાપુર - માસવાર હિસાબ સરવૈયું</h3>
-        <table>
-          <thead>
-            <tr><th>માસ</th><th>કુલ આવક (₹)</th><th>કુલ જાવક (₹)</th><th>જમા સિલક (₹)</th></tr>
-          </thead>
-          <tbody>
-            ${data.summaryList.map(m => `
+
+    if (!data.isSingleMonth) {
+      box.innerHTML = `
+        <div id="multiSummaryPrintArea" class="sheet-paper" style="color:#000;">
+          <h3 style="text-align:center; margin:0 0 4px;">શાંતિકુંજ બંગ્લોઝ, વિજાપુર</h3>
+          <p style="text-align:center; color:#555; margin:0 0 16px;">સંયુક્ત હિસાબ સરવૈયું (${data.summaryList[0].name} થી ${data.summaryList[data.summaryList.length - 1].name})</p>
+          
+          <div class="stats-grid" style="margin-bottom:16px;">
+            <div class="stat-box stat-inc">
+              <small>કુલ આવક (સમયગાળો)</small>
+              <strong>₹ ${data.totalIncome.toLocaleString('en-IN')}</strong>
+            </div>
+            <div class="stat-box stat-exp">
+              <small>કુલ જાવક (સમયગાળો)</small>
+              <strong>₹ ${data.totalExpense.toLocaleString('en-IN')}</strong>
+            </div>
+            <div class="stat-box stat-bal">
+              <small>હાથ પર વધેલ સિલક</small>
+              <strong>₹ ${data.totalBalance.toLocaleString('en-IN')}</strong>
+            </div>
+          </div>
+
+          <table>
+            <thead>
+              <tr style="background:#e2e8f0;">
+                <th>વિગત</th>
+                <th style="text-align:right;">કુલ રકમ (₹)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><b>આવક (સર્વ માસ એકત્રિત):</b></td>
+                <td class="amt-col" style="color:green;">₹ ${data.totalIncome.toLocaleString('en-IN')}</td>
+              </tr>
+              <tr>
+                <td><b>જાવક / ખર્ચ (સર્વ માસ એકત્રિત):</b></td>
+                <td class="amt-col" style="color:red;">₹ ${data.totalExpense.toLocaleString('en-IN')}</td>
+              </tr>
+              <tr style="font-weight:700; background:#f8fafc; font-size:17px;">
+                <td>ચોખ્ખી વધેલ સિલક:</td>
+                <td class="amt-col" style="color:blue;">₹ ${data.totalBalance.toLocaleString('en-IN')}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      `;
+    } else {
+      const m = data.summaryList[0];
+      box.innerHTML = `
+        <div id="multiSummaryPrintArea" class="sheet-paper" style="color:#000;">
+          <h3 style="text-align:center; margin:0 0 10px;">${m.name} - હિસાબ સરવૈયું</h3>
+          <table>
+            <thead>
+              <tr><th>માસ</th><th>કુલ આવક (₹)</th><th>કુલ જાવક (₹)</th><th>જમા સિલક (₹)</th></tr>
+            </thead>
+            <tbody>
               <tr>
                 <td><b>${m.name}</b></td>
                 <td class="amt-col" style="color:green;">₹ ${m.income.toLocaleString('en-IN')}</td>
                 <td class="amt-col" style="color:red;">₹ ${m.expense.toLocaleString('en-IN')}</td>
                 <td class="amt-col" style="color:blue;">₹ ${m.balance.toLocaleString('en-IN')}</td>
               </tr>
-            `).join('')}
-            <tr style="background:#f1f5f9; font-weight:700;">
-              <td>કુલ સરવાળો</td>
-              <td class="amt-col" style="color:green;">₹ ${data.totalIncome.toLocaleString('en-IN')}</td>
-              <td class="amt-col" style="color:red;">₹ ${data.totalExpense.toLocaleString('en-IN')}</td>
-              <td class="amt-col" style="color:blue;">₹ ${data.totalBalance.toLocaleString('en-IN')}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    `;
+            </tbody>
+          </table>
+        </div>
+      `;
+    }
   }
 
   function exportSummaryCSV() {
     if (!currentSummaryData || !currentSummaryData.summaryList) return toast('પહેલા સરવૈયું શોધો.');
-    let csv = "માસ,કુલ આવક,કુલ જાવક,જમા સિલક\n";
-    currentSummaryData.summaryList.forEach(m => {
-      csv += `"${m.name}",${m.income},${m.expense},${m.balance}\n`;
-    });
-    csv += `"કુલ સરવાળો",${currentSummaryData.totalIncome},${currentSummaryData.totalExpense},${currentSummaryData.totalBalance}\n`;
+    let csv = "વિગત,રકમ (₹)\n";
+    csv += `"કુલ આવક",${currentSummaryData.totalIncome}\n`;
+    csv += `"કુલ જાવક",${currentSummaryData.totalExpense}\n`;
+    csv += `"વધેલ સિલક",${currentSummaryData.totalBalance}\n`;
 
     const blob = new Blob(["\ufeff" + csv], { type: 'text/csv;charset=utf-8;' });
     const link = document.createElement("a");
     link.href = URL.createObjectURL(blob);
-    link.setAttribute("download", "Shantikunj_Hisab_Sarvaiyu.csv");
+    link.setAttribute("download", "Shantikunj_Summary.csv");
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -1146,11 +1231,12 @@
     }).withFailureHandler(err => toast(err.message)).getAuditRegister(APASS);
   }
 
-  // --- Announcements (Add, Edit, Delete, Photo) ---
+  // --- Announcements (Rule-Based Slot Assignment) ---
   function renderAdminAnnouncements() {
     const box = document.getElementById('admAnnList');
     box.innerHTML = (DATA?.announcements || []).map(a => `
       <div style="background:#081525; padding:12px; border-radius:8px; margin-bottom:10px; border-left:3px solid var(--gold);">
+        <span class="ad-badge">સ્લોટ: જાહેરાત ${a.slot||1}</span>
         <b>${a.subject}</b>
         <p style="margin:4px 0; font-size:15px;">${a.message}</p>
         ${a.photo ? `<img src="${a.photo}" style="max-height:80px; border-radius:6px; margin:4px 0; display:block;">` : ''}
@@ -1162,7 +1248,6 @@
     `).join('') || '<div style="color:var(--muted)">કોઈ જાહેરાત નથી.</div>';
   }
 
-  // ફોટો રીસાઈઝ અને ઓટો-કોમ્પ્રેસ ફંક્શન (૫૦,૦૦૦ કેરેક્ટર એરર નિવારણ)[cite: 5]
   function resizeAndCompressImage(file, maxWidth, maxHeight, quality, callback) {
     const reader = new FileReader();
     reader.onload = function(e) {
@@ -1208,6 +1293,7 @@
     if (!ann) return;
     document.getElementById('annFormTitle').textContent = 'જાહેરાત સુધારો (Edit)';
     document.getElementById('annEditId').value = ann.id;
+    document.getElementById('annSlot').value = ann.slot || 1;
     document.getElementById('annSub').value = ann.subject;
     document.getElementById('annMsg').value = ann.message;
     tempAnnPhotoBase64 = ann.photo || '';
@@ -1230,6 +1316,7 @@
   function saveAnnouncement() {
     const f = {
       id: document.getElementById('annEditId').value,
+      slot: Number(document.getElementById('annSlot').value) || 1,
       subject: document.getElementById('annSub').value,
       message: document.getElementById('annMsg').value,
       photo: tempAnnPhotoBase64
@@ -1286,46 +1373,64 @@
     }).withFailureHandler(err => toast(err.message)).adminDeleteMeeting(APASS, id);
   }
 
-  // --- Complaints Management (with Filtering) ---
+  // --- Complaints Management (Pending vs Completed Split + Export) ---
   function loadAdminComplaints() {
     google.script.run.withSuccessHandler(list => {
       allComplaintsCache = list || [];
-      applyComplaintFilter();
+      renderSplitComplaints();
     }).withFailureHandler(err => toast(err.message)).getComplaintsList(APASS);
   }
 
-  function applyComplaintFilter() {
-    const statusFlt = document.getElementById('fltCompStatus').value;
-    const houseFlt = document.getElementById('fltCompHouse').value.trim();
-    const subjFlt = document.getElementById('fltCompSubject').value.trim().toLowerCase();
+  function renderSplitComplaints() {
+    const pBox = document.getElementById('admCompPendingList');
+    const cBox = document.getElementById('admCompCompletedList');
 
-    const filtered = allComplaintsCache.filter(c => {
-      if (statusFlt !== 'all' && c.status !== statusFlt) return false;
-      if (houseFlt && String(c.houseNo) !== houseFlt) return false;
-      if (subjFlt && !String(c.subject).toLowerCase().includes(subjFlt)) return false;
-      return true;
-    });
+    const pending = allComplaintsCache.filter(c => c.status !== 'પૂર્ણ');
+    const completed = allComplaintsCache.filter(c => c.status === 'પૂર્ણ');
 
-    const box = document.getElementById('admCompList');
-    box.innerHTML = filtered.map(c => `
-      <div style="background:#081525; padding:12px; border-radius:8px; margin-bottom:8px; border-left:4px solid ${c.status === 'પૂર્ણ' ? 'var(--ok)' : 'var(--danger)'};">
+    pBox.innerHTML = pending.map(c => `
+      <div style="background:#081525; padding:12px; border-radius:8px; margin-bottom:8px; border-left:4px solid var(--danger);">
         <b>${c.id} (મકાન નં. ${c.houseNo})</b> - <i>${c.subject}</i>
         <p style="margin:4px 0; font-size:15px;">${c.desc}</p>
-        <div style="font-size:14px; color:var(--muted); margin-bottom:6px;">તારીખ: ${c.date} • નામ: ${c.name}</div>
-        ${c.status !== 'પૂર્ણ' ? `<button class="btn green" style="padding:4px 10px; font-size:13px;" onclick="completeComplaint('${c.id}')">પૂર્ણ માર્ક કરો</button>` : '<span style="color:var(--ok); font-weight:700;">✅ પૂર્ણ થયેલ</span>'}
+        <div style="font-size:14px; color:var(--muted); margin-bottom:8px;">તારીખ: ${c.date} • નામ: ${c.name} • જવાબદાર: ${c.assignedTo || 'કમિટી'}</div>
+        <button class="btn green" style="padding:5px 12px; font-size:13px;" onclick="completeComplaint('${c.id}')"><i class="fa-solid fa-check"></i> પૂર્ણ માર્ક કરો</button>
       </div>
-    `).join('') || '<div style="color:var(--muted)">કોઈ ફરિયાદ ફિલ્ટર મુજબ મળી નથી.</div>';
+    `).join('') || '<div style="color:var(--muted)">કોઈ પેન્ડિંગ ફરિયાદ નથી.</div>';
+
+    cBox.innerHTML = completed.map(c => `
+      <div style="background:#081525; padding:12px; border-radius:8px; margin-bottom:8px; border-left:4px solid var(--ok);">
+        <b>${c.id} (મકાન નં. ${c.houseNo})</b> - <i>${c.subject}</i>
+        <p style="margin:4px 0; font-size:15px;">${c.desc}</p>
+        <div style="font-size:14px; color:var(--muted);">તારીખ: ${c.date} • પૂર્ણ તારીખ: ${c.completedAt || '-'} • નામ: ${c.name}</div>
+        <span style="color:var(--ok); font-weight:700; font-size:14px;"><i class="fa-solid fa-circle-check"></i> પૂર્ણ થયેલ</span>
+      </div>
+    `).join('') || '<div style="color:var(--muted)">કોઈ પૂર્ણ થયેલી ફરિયાદ નથી.</div>';
   }
 
   function completeComplaint(id) {
     google.script.run.withSuccessHandler(list => {
       allComplaintsCache = list;
-      applyComplaintFilter();
-      toast('ફરિયાદ પૂર્ણ માર્ક થઈ.');
+      renderSplitComplaints();
+      toast('ફરિયાદ સફળતાપૂર્વક પૂર્ણ લિસ્ટમાં ખસેડાઈ ગઈ.');
     }).withFailureHandler(err => toast(err.message)).adminUpdateComplaint(APASS, id, 'પૂર્ણ');
   }
 
-  // --- Committee Photo and Duty Update ---
+  function exportComplaintsCSV() {
+    if (!allComplaintsCache || !allComplaintsCache.length) return toast('કોઈ ફરિયાદ રેકોર્ડ નથી.');
+    let csv = "ID,તારીખ,મકાન નં,નામ,મોબાઈલ,વિષય,ફરિયાદ,સ્થિતિ,જવાબદાર,પૂર્ણ_સમય\n";
+    allComplaintsCache.forEach(c => {
+      csv += `"${c.id}","${c.date}","${c.houseNo}","${c.name}","${c.mobile}","${c.subject}","${c.desc.replace(/"/g, '""')}","${c.status}","${c.assignedTo}","${c.completedAt}"\n`;
+    });
+    const blob = new Blob(["\ufeff" + csv], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.setAttribute("download", "Shantikunj_Complaints_Report.csv");
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+
+  // --- Committee Photo & Duty Update ---
   function onAdminMemberChange() {
     const row = document.getElementById('admMemberSelect').value;
     const mem = DATA?.committee?.find(x => String(x.row) === String(row));
@@ -1335,7 +1440,6 @@
     }
   }
 
-  // કમિટી સભ્ય ફોટો પ્રિવ્યુ અને ઓટો-કોમ્પ્રેસ[cite: 6]
   function previewPhoto(input) {
     if (input.files && input.files[0]) {
       resizeAndCompressImage(input.files[0], 180, 180, 0.75, function(compressedBase64) {
@@ -1347,11 +1451,11 @@
 
   function saveMemberPhoto() {
     const row = document.getElementById('admMemberSelect').value;
-    const duty = document.getElementById('admMemberDuty').value;
+    const duty = document.getElementById('admMemberDuty').value.trim();
     toast('અપડેટ થઈ રહ્યું છે, કૃપા કરી રાહ જુઓ...');
     google.script.run.withSuccessHandler(d => {
       DATA = d; renderCommittee(); populateAdminControls();
-      toast('કમિટી વિગતો સફળતાપૂર્વક અપડેટ થઈ ગઈ.');
+      toast('કમિટી વિગતો અને જવાબદારી સફળતાપૂર્વક અપડેટ થઈ ગઈ.');
     }).withFailureHandler(err => toast('એરર: ' + err.message)).adminUpdateCommitteeMember(APASS, { row: row, photo: tempPhotoBase64, duty: duty });
   }
 
@@ -1362,8 +1466,9 @@
   window.saveDirectEntry=saveDirectEntry; window.saveAdminMonth=saveAdminMonth; window.saveAnnouncement=saveAnnouncement;
   window.editAnnouncement=editAnnouncement; window.cancelEditAnn=cancelEditAnn; window.deleteAnnouncement=deleteAnnouncement;
   window.previewAnnPhoto=previewAnnPhoto; window.saveMeeting=saveMeeting; window.deleteMeeting=deleteMeeting;
-  window.lookupComplaintHouse=lookupComplaintHouse; window.submitComplaint=submitComplaint; window.completeComplaint=completeComplaint;
-  window.applyComplaintFilter=applyComplaintFilter; window.onAdminMemberChange=onAdminMemberChange; window.previewPhoto=previewPhoto;
+  window.lookupComplaintHouse=lookupComplaintHouse; window.onComplaintSubjectChange=onComplaintSubjectChange;
+  window.submitComplaint=submitComplaint; window.completeComplaint=completeComplaint; window.exportComplaintsCSV=exportComplaintsCSV;
+  window.onAdminMemberChange=onAdminMemberChange; window.previewPhoto=previewPhoto;
   window.saveMemberPhoto=saveMemberPhoto; window.toggleMemberLoginPanel=toggleMemberLoginPanel; window.reqAuthCode=reqAuthCode;
   window.submitAuthCode=submitAuthCode; window.openStatement=openStatement; window.closeStatementAndHome=closeStatementAndHome;
   window.fetchMultiMonthSummary=fetchMultiMonthSummary; window.exportSummaryCSV=exportSummaryCSV; window.printMultiSummary=printMultiSummary;
