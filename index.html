@@ -3,7 +3,7 @@
 <head>
   <base target="_top">
   <meta charset="utf-8">
-  <title>શાંતિકુંજ બંગ્લોઝ - સોસાયટી પોર્ટલ</title>
+  <title>શાંતિકુંજ બંગ્લોઝ, વિજાપુર</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <link href="https://fonts.googleapis.com/css2?family=Hind+Vadodara:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -32,12 +32,11 @@
     .clock { font-family: monospace; font-size: 18px; font-weight: 700; color: var(--gold); }
     
     .header {
-      padding: 22px; border: 2px solid #204b77; border-radius: 20px;
+      padding: 18px; border: 2px solid #204b77; border-radius: 20px;
       background: linear-gradient(135deg, #09213d, #0d1624); text-align: center;
       box-shadow: 0 10px 30px rgba(0,0,0,0.6); margin-bottom: 16px;
     }
     .header h1 { margin: 0; font-size: 32px; color: var(--pri); font-weight: 700; }
-    .header p { margin: 6px 0 0; color: var(--muted); font-size: 17px; font-weight: 500; }
 
     .ticker-wrap {
       display: flex; align-items: center; background: #0c233c;
@@ -51,27 +50,25 @@
     .ticker-text { color: #fde047; font-weight: 600; font-size: 18px; }
 
     .motion-ads-grid {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; margin-bottom: 20px;
     }
-    @media (max-width: 768px) { .motion-ads-grid { grid-template-columns: 1fr; } }
     
-    .ad-card-zoom {
+    .ad-card {
       background: linear-gradient(145deg, #13243a, #0b1726);
-      border: 2px solid var(--pri); border-radius: 16px; padding: 18px;
-      box-shadow: 0 8px 25px rgba(56,189,248,0.25);
-      animation: zoomMotion 4s ease-in-out infinite alternate;
+      border: 2px solid var(--pri); border-radius: 16px; padding: 16px;
+      box-shadow: 0 8px 25px rgba(56,189,248,0.2); position: relative; overflow: hidden;
     }
-    .ad-card-zoom.right-ad {
-      border-color: var(--gold); box-shadow: 0 8px 25px rgba(251,191,36,0.25);
-      animation: zoomMotion 4.5s ease-in-out infinite alternate;
-    }
-    @keyframes zoomMotion {
-      0% { transform: scale(0.98); }
-      100% { transform: scale(1.02); }
-    }
-    .ad-card-zoom h3 { margin: 0 0 6px; font-size: 20px; color: var(--pri); }
-    .ad-card-zoom.right-ad h3 { color: var(--gold); }
-    .ad-card-zoom p { margin: 0; font-size: 16px; line-height: 1.5; color: #f1f5f9; }
+    .anim-zoom { animation: animZoom 4s ease-in-out infinite alternate; }
+    .anim-slide { animation: animSlide 4.5s ease-in-out infinite alternate; border-color: var(--gold); }
+    .anim-glow { animation: animGlow 3.5s ease-in-out infinite alternate; border-color: var(--ok); }
+
+    @keyframes animZoom { 0% { transform: scale(0.98); } 100% { transform: scale(1.02); } }
+    @keyframes animSlide { 0% { transform: translateY(0); } 100% { transform: translateY(-5px); } }
+    @keyframes animGlow { 0% { box-shadow: 0 0 10px rgba(16,185,129,0.3); } 100% { box-shadow: 0 0 25px rgba(16,185,129,0.6); } }
+
+    .ad-card h3 { margin: 0 0 8px; font-size: 20px; color: var(--pri); }
+    .ad-card p { margin: 0 0 8px; font-size: 16px; line-height: 1.5; color: #f1f5f9; }
+    .ad-card img { width: 100%; max-height: 200px; object-fit: cover; border-radius: 10px; margin-top: 8px; }
 
     .nav { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; }
     .btn {
@@ -176,7 +173,7 @@
       display: flex; align-items: center; justify-content: center; padding: 16px;
     }
     .modal-box {
-      width: min(1000px, 100%); max-height: 92vh; overflow-y: auto;
+      width: min(1050px, 100%); max-height: 92vh; overflow-y: auto;
       background: #091728; border: 1.5px solid #2563eb; border-radius: 18px; padding: 22px;
     }
     
@@ -200,8 +197,8 @@
 
     @media print {
       body * { visibility: hidden; }
-      #printArea, #printArea * { visibility: visible; }
-      #printArea { position: absolute; left: 0; top: 0; width: 100%; max-width: 100%; background: #fff !important; color: #000 !important; }
+      #printArea, #printArea *, #multiSummaryPrintArea, #multiSummaryPrintArea * { visibility: visible; }
+      #printArea, #multiSummaryPrintArea { position: absolute; left: 0; top: 0; width: 100%; max-width: 100%; background: #fff !important; color: #000 !important; }
       th { background: #f1f5f9 !important; color: #000 !important; }
       td, th { border: 1px solid #64748b !important; }
       .no-print { display: none !important; }
@@ -220,8 +217,7 @@
   </div>
 
   <header class="header no-print">
-    <h1>શાંતિકુંજ બંગ્લોઝ સોસાયટી</h1>
-    <p>માસવાર આવક-જાવક હિસાબ • સેવા & ફરિયાદ પોર્ટલ • સોસાયટી ડિજિટલ સંચાલન</p>
+    <h1>શાંતિકુંજ બંગ્લોઝ, વિજાપુર</h1>
   </header>
 
   <div class="ticker-wrap no-print">
@@ -229,16 +225,7 @@
     <marquee class="ticker-text" id="mainSlideTicker" scrollamount="6">શાંતિકુંજ બંગ્લોઝ પરિવારમાં આપનું હાર્દિક સ્વાગત છે...</marquee>
   </div>
 
-  <div class="motion-ads-grid no-print" id="motionAdsBox">
-    <div class="ad-card-zoom" id="leftMotionAd">
-      <h3 id="adLeftTitle"><i class="fa-solid fa-circle-exclamation"></i> અગત્યની નોટિસ</h3>
-      <p id="adLeftBody">સોસાયટી પરિસરમાં શાંતિ અને સ્વચ્છતા જાળવવી એ સહુ પરિવારજનોની સહિયારી જવાબદારી છે.</p>
-    </div>
-    <div class="ad-card-zoom right-ad" id="rightMotionAd">
-      <h3 id="adRightTitle"><i class="fa-solid fa-calendar-check"></i> કમિટી બેઠક</h3>
-      <p id="adRightBody">સોસાયટીના વિકાસ કાર્યો સંદર્ભે સમયસર સૂચનાઓ આ પોર્ટલ પર મૂકવામાં આવશે.</p>
-    </div>
-  </div>
+  <div class="motion-ads-grid no-print" id="motionAdsBox"></div>
 
   <nav class="nav no-print">
     <button class="btn active" id="tabBtnHome" onclick="switchSection('home')"><i class="fa-solid fa-house"></i> હોમ હિસાબ</button>
@@ -287,7 +274,7 @@
       </div>
 
       <div id="printArea" class="sheet-paper">
-        <h2>શાંતિકુંજ બંગ્લોઝ સોસાયટી, વિજાપુર</h2>
+        <h2>શાંતિકુંજ બંગ્લોઝ, વિજાપુર</h2>
         <p id="stSheetSubTitle">આનંદપુરા ચોકડી, વિજાપુર • માસવાર આવક-જાવક હિસાબ</p>
 
         <div class="tables-split">
@@ -380,6 +367,7 @@
       <div style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:16px;">
         <button class="btn active" id="btnAdmTabEntry" onclick="switchAdmTab('entry')">નવી એન્ટ્રી</button>
         <button class="btn" id="btnAdmTabMonth" onclick="switchAdmTab('month')">માસ ઉમેરો / કંટ્રોલ</button>
+        <button class="btn" id="btnAdmTabSummary" onclick="switchAdmTab('summary')"><i class="fa-solid fa-chart-pie"></i> હિસાબ સરવૈયું</button>
         <button class="btn" id="btnAdmTabAudit" onclick="switchAdmTab('audit')"><i class="fa-solid fa-eye"></i> View Register</button>
         <button class="btn" id="btnAdmTabAnn" onclick="switchAdmTab('ann')">જાહેરાતો</button>
         <button class="btn" id="btnAdmTabMeet" onclick="switchAdmTab('meet')">મીટિંગ</button>
@@ -388,6 +376,7 @@
         <button class="btn red" onclick="adminLogout()">લૉગ આઉટ</button>
       </div>
 
+      <!-- Tab 1: Entry -->
       <div id="admTabEntryView">
         <div style="background:#0c1d31; border:1px solid var(--line); border-radius:14px; padding:18px;">
           <h3>સીધી આવક / જાવક એન્ટ્રી ઉમેરો</h3>
@@ -415,6 +404,7 @@
         </div>
       </div>
 
+      <!-- Tab 2: Month -->
       <div id="admTabMonthView" class="hidden">
         <div style="background:#0c1d31; border:1px solid var(--line); border-radius:14px; padding:18px;">
           <h3>નવો માસ ઉમેરો અને કંટ્રોલ કરો</h3>
@@ -429,6 +419,31 @@
         </div>
       </div>
 
+      <!-- Tab 3: Summary (સરવૈયું) -->
+      <div id="admTabSummaryView" class="hidden">
+        <div style="background:#0c1d31; border:1px solid var(--line); border-radius:14px; padding:18px;">
+          <h3><i class="fa-solid fa-file-invoice"></i> માસવાર હિસાબ સરવૈયું (રિપોર્ટ ડાઉનલોડ)</h3>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+            <div>
+              <label style="color:var(--muted)">આ માસ થી (From):</label>
+              <select id="smFromMonth" class="input"></select>
+            </div>
+            <div>
+              <label style="color:var(--muted)">આ માસ સુધી (To):</label>
+              <select id="smToMonth" class="input"></select>
+            </div>
+          </div>
+          <div style="display:flex; gap:10px; margin-top:10px; flex-wrap:wrap;">
+            <button class="btn green" onclick="fetchMultiMonthSummary()"><i class="fa-solid fa-magnifying-glass"></i> સરવૈયું જુઓ</button>
+            <button class="btn gold" onclick="exportSummaryCSV()"><i class="fa-solid fa-file-excel"></i> એક્સેલ (CSV) ડાઉનલોડ</button>
+            <button class="btn" onclick="printMultiSummary()"><i class="fa-solid fa-print"></i> પ્રિન્ટ / PDF ડાઉનલોડ</button>
+          </div>
+
+          <div id="multiSummaryBox" style="margin-top:18px;"></div>
+        </div>
+      </div>
+
+      <!-- Tab 4: Audit -->
       <div id="admTabAuditView" class="hidden">
         <div style="background:#0c1d31; border:1px solid var(--line); border-radius:14px; padding:18px;">
           <h3><i class="fa-solid fa-list-check"></i> સભ્ય હિસાબ વ્યુ રજિસ્ટર (કોણે કયો માસ જોયો)</h3>
@@ -436,26 +451,30 @@
         </div>
       </div>
 
+      <!-- Tab 5: Announcements -->
       <div id="admTabAnnView" class="hidden">
         <div style="background:#0c1d31; border:1px solid var(--line); border-radius:14px; padding:18px;">
-          <h3>જાહેરાત ઉમેરો</h3>
+          <h3 id="annFormTitle">જાહેરાત ઉમેરો</h3>
+          <input type="hidden" id="annEditId" value="">
           <input id="annSub" class="input" placeholder="વિષય">
           <textarea id="annMsg" class="input" rows="3" placeholder="જાહેરાત લખાણ"></textarea>
-          <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
-            <input id="annDate" class="input" type="date">
-            <select id="annPri" class="input">
-              <option value="સામાન્ય">સામાન્ય</option>
-              <option value="મહત્વપૂર્ણ">મહત્વપૂર્ણ</option>
-              <option value="તાત્કાલિક">તાત્કાલિક</option>
-            </select>
+          
+          <label style="color:var(--muted); font-size:15px;">જાહેરાતમાં ફોટો ઉમેરો (વૈકલ્પિક):</label>
+          <input type="file" id="annPhotoFile" class="input" accept="image/*" onchange="previewAnnPhoto(this)">
+          <div id="annPhotoPreview" style="margin:6px 0;"></div>
+
+          <div style="display:flex; gap:8px;">
+            <button class="btn green" id="btnSaveAnn" onclick="saveAnnouncement()">જાહેરાત સેવ કરો</button>
+            <button class="btn hidden" id="btnCancelEditAnn" onclick="cancelEditAnn()">રદ કરો</button>
           </div>
-          <button class="btn green" onclick="saveAnnouncement()">જાહેરાત સેવ કરો</button>
+          
           <hr style="border-color:var(--line); margin:16px 0;">
           <h4>હાલની જાહેરાતો:</h4>
           <div id="admAnnList"></div>
         </div>
       </div>
 
+      <!-- Tab 6: Meetings -->
       <div id="admTabMeetView" class="hidden">
         <div style="background:#0c1d31; border:1px solid var(--line); border-radius:14px; padding:18px;">
           <h3>મીટિંગ ઉમેરો</h3>
@@ -473,13 +492,27 @@
         </div>
       </div>
 
+      <!-- Tab 7: Complaints -->
       <div id="admTabCompView" class="hidden">
         <div style="background:#0c1d31; border:1px solid var(--line); border-radius:14px; padding:18px;">
           <h3>ફરિયાદ પોર્ટલ નિયંત્રણ</h3>
+          
+          <!-- Filters -->
+          <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; margin-bottom:14px;">
+            <select id="fltCompStatus" class="input" onchange="applyComplaintFilter()">
+              <option value="all">બધી સ્થિતિ (All Status)</option>
+              <option value="પેન્ડિંગ">પેન્ડિંગ (Pending)</option>
+              <option value="પૂર્ણ">પૂર્ણ (Completed)</option>
+            </select>
+            <input id="fltCompHouse" class="input" type="number" placeholder="મકાન નંબર ફિલ્ટર" oninput="applyComplaintFilter()">
+            <input id="fltCompSubject" class="input" placeholder="વિષય ફિલ્ટર" oninput="applyComplaintFilter()">
+          </div>
+
           <div id="admCompList"></div>
         </div>
       </div>
 
+      <!-- Tab 8: Photos -->
       <div id="admTabPhotoView" class="hidden">
         <div style="background:#0c1d31; border:1px solid var(--line); border-radius:14px; padding:18px;">
           <h3>કમિટી સભ્ય ફોટો & વિગત</h3>
@@ -497,12 +530,10 @@
 <div id="toast" class="toast hidden"></div>
 
 <script>
-  // =========================================================================
-  // આપની નવી Web App URL સીધી ગોઠવી દીધી છે
-  // =========================================================================
+  // તમારી Web App API Endpoint URL જોડી દીધી છે
   const API_URL = "https://script.google.com/macros/s/AKfycbwCaiHsw_XV8YKsJXLFMdZEqARFwdgoPDSL4Lw5sClVq809M3IUF-ZEQUccdlFo3Mn8/exec";
 
-  // Google Script Compatibility Bridge (100% GET based to avoid CORS / Login blocks)
+  // Robust Unified Google Script Wrapper
   const google = {
     script: {
       run: {
@@ -514,22 +545,35 @@
                   if (failureCb) failureCb(new Error("API URL સેટ કરેલી નથી."));
                   return;
                 }
-                const q = new URLSearchParams({ action, ...params });
-                if (payload) q.append('payload', JSON.stringify(payload));
-                const url = API_URL + (API_URL.includes('?') ? '&' : '?') + q.toString();
-
-                fetch(url, { method: 'GET', redirect: 'follow' })
+                
+                const isHeavy = payload && JSON.stringify(payload).length > 1500;
+                
+                if (isHeavy) {
+                  fetch(API_URL, {
+                    method: 'POST',
+                    redirect: 'follow',
+                    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                    body: JSON.stringify({ action: action, params: params, payload: payload })
+                  })
                   .then(res => res.json())
                   .then(res => {
-                    if (res && res.error) {
-                      if (failureCb) failureCb(new Error(res.error));
-                    } else {
-                      if (successCb) successCb(res);
-                    }
+                    if (res && res.error) { if (failureCb) failureCb(new Error(res.error)); }
+                    else { if (successCb) successCb(res); }
                   })
-                  .catch(err => {
-                    if (failureCb) failureCb(err);
-                  });
+                  .catch(err => { if (failureCb) failureCb(err); });
+                } else {
+                  const q = new URLSearchParams({ action, ...params });
+                  if (payload) q.append('payload', JSON.stringify(payload));
+                  const url = API_URL + (API_URL.includes('?') ? '&' : '?') + q.toString();
+
+                  fetch(url, { method: 'GET', redirect: 'follow' })
+                    .then(res => res.json())
+                    .then(res => {
+                      if (res && res.error) { if (failureCb) failureCb(new Error(res.error)); }
+                      else { if (successCb) successCb(res); }
+                    })
+                    .catch(err => { if (failureCb) failureCb(err); });
+                }
               }
 
               return {
@@ -550,7 +594,8 @@
                 adminSaveMeeting: (pass, meetData) => callApi('adminSaveMeeting', {}, { pass, meetData }),
                 adminDeleteMeeting: (pass, id) => callApi('adminDeleteMeeting', {}, { pass, id }),
                 adminUpdateCommitteeMember: (pass, memberData) => callApi('adminUpdateCommitteeMember', {}, { pass, memberData }),
-                adminUpdateComplaint: (pass, id, status) => callApi('adminUpdateComplaint', {}, { pass, id, status })
+                adminUpdateComplaint: (pass, id, status) => callApi('adminUpdateComplaint', {}, { pass, id, status }),
+                adminGetMultiMonthSummary: (pass, fromMonth, toMonth) => callApi('adminGetMultiMonthSummary', {}, { pass, fromMonth, toMonth })
               };
             }
           };
@@ -562,7 +607,8 @@
   let DATA = null, APASS = '';
   let selectedYear = 2026, selectedMonthCode = '';
   let memberAuthToken = '', memberSessionToken = '';
-  let tempPhotoBase64 = '';
+  let tempPhotoBase64 = '', tempAnnPhotoBase64 = '';
+  let allComplaintsCache = [], currentSummaryData = null;
 
   const GUJ_MONTHS = ['જાન્યુઆરી','ફેબ્રુઆરી','માર્ચ','એપ્રિલ','મે','જૂન','જુલાઈ','ઑગસ્ટ','સપ્ટેમ્બર','ઑક્ટોબર','નવેમ્બર','ડિસેમ્બર'];
 
@@ -659,22 +705,27 @@
   }
 
   function renderAnnouncements(list) {
-    if (!list || list.length === 0) return;
-    const ticker = document.getElementById('mainSlideTicker');
-    if (ticker) ticker.textContent = list.map(a => `📌 [${a.date}] ${a.subject}: ${a.message}`).join('   •••   ');
+    const box = document.getElementById('motionAdsBox');
+    if (!box) return;
+    if (!list || list.length === 0) {
+      box.innerHTML = '';
+      return;
+    }
 
-    if (list[0]) {
-      document.getElementById('adLeftTitle').innerHTML = `<i class="fa-solid fa-bullhorn"></i> ` + list[0].subject;
-      document.getElementById('adLeftBody').textContent = list[0].message;
-    }
-    if (list[1]) {
-      document.getElementById('adRightTitle').innerHTML = `<i class="fa-solid fa-circle-exclamation"></i> ` + list[1].subject;
-      document.getElementById('adRightBody').textContent = list[1].message;
-    } else if (DATA?.meetings?.length > 0) {
-      const m = DATA.meetings[0];
-      document.getElementById('adRightTitle').innerHTML = `<i class="fa-solid fa-calendar-check"></i> ` + m.subject;
-      document.getElementById('adRightBody').textContent = `${m.agenda} (તારીખ: ${m.date} ${m.time})`;
-    }
+    const ticker = document.getElementById('mainSlideTicker');
+    if (ticker) ticker.textContent = list.map(a => `📌 ${a.subject}: ${a.message}`).join('   •••   ');
+
+    const animClasses = ['anim-zoom', 'anim-slide', 'anim-glow'];
+    box.innerHTML = list.map((a, i) => {
+      const anim = animClasses[i % animClasses.length];
+      return `
+        <div class="ad-card ${anim}">
+          <h3><i class="fa-solid fa-bullhorn"></i> ${a.subject}</h3>
+          <p>${a.message}</p>
+          ${a.photo ? `<img src="${a.photo}" alt="Ad Photo">` : ''}
+        </div>
+      `;
+    }).join('');
   }
 
   function onYearChange() {
@@ -682,7 +733,17 @@
     const mSel=document.getElementById('selMonth');
     if(!ySel||!mSel)return;
     selectedYear=Number(ySel.value);
-    const months=(DATA?.monthsList||[]).filter(x=>Number(x.year)===selectedYear).sort((a,b)=>b.month-a.month);
+    
+    const seen = new Set();
+    const months = [];
+    (DATA?.monthsList||[]).forEach(x => {
+      if (Number(x.year) === selectedYear && !seen.has(x.code)) {
+        seen.add(x.code);
+        months.push(x);
+      }
+    });
+    months.sort((a,b)=>b.month-a.month);
+
     mSel.innerHTML='';
     if(!months.length){
       mSel.innerHTML='<option value="">આ વર્ષમાં હિસાબ ઉપલબ્ધ નથી</option>';
@@ -709,7 +770,7 @@
     const found = DATA?.monthsList?.find(x => x.code === selectedMonthCode);
     const isPublic = (selectedMonthCode === DATA?.publicMonth) || (found && found.isCurrent);
     
-    const parts = selectedMonthCode.split('_');
+    const parts = (selectedMonthCode || '01_2026').split('_');
     const mIdx = Number(parts[0]) - 1;
     const mName = GUJ_MONTHS[mIdx] + ' ' + parts[1];
 
@@ -911,14 +972,17 @@
   }
 
   function switchAdmTab(t) {
-    ['Entry', 'Month', 'Audit', 'Ann', 'Meet', 'Comp', 'Photo'].forEach(x => {
-      document.getElementById('admTab' + x + 'View').classList.toggle('hidden', x.toLowerCase() !== t);
-      document.getElementById('btnAdmTab' + x).classList.toggle('active', x.toLowerCase() !== t);
+    ['Entry', 'Month', 'Summary', 'Audit', 'Ann', 'Meet', 'Comp', 'Photo'].forEach(x => {
+      const el = document.getElementById('admTab' + x + 'View');
+      const btn = document.getElementById('btnAdmTab' + x);
+      if (el) el.classList.toggle('hidden', x.toLowerCase() !== t);
+      if (btn) btn.classList.toggle('active', x.toLowerCase() === t);
     });
     if (t === 'audit') loadAuditRegister();
     if (t === 'ann') renderAdminAnnouncements();
     if (t === 'meet') renderAdminMeetings();
     if (t === 'comp') loadAdminComplaints();
+    if (t === 'summary') populateSummarySelectors();
   }
 
   function populateAdminControls() {
@@ -988,6 +1052,84 @@
     }).withFailureHandler(err=>toast(err.message||err)).adminSaveMonthControl(APASS,code,name,isPub);
   }
 
+  // --- Summary (સરવૈયું) Management ---
+  function populateSummarySelectors() {
+    const sFrom = document.getElementById('smFromMonth');
+    const sTo = document.getElementById('smToMonth');
+    if (!sFrom || !sTo) return;
+    const list = DATA?.monthsList || [];
+    const opts = list.map(m => `<option value="${m.code}">${m.name}</option>`).join('');
+    sFrom.innerHTML = opts;
+    sTo.innerHTML = opts;
+    if (list.length > 1) sTo.value = list[0].code;
+  }
+
+  function fetchMultiMonthSummary() {
+    const fm = document.getElementById('smFromMonth').value;
+    const tm = document.getElementById('smToMonth').value;
+    google.script.run.withSuccessHandler(res => {
+      currentSummaryData = res;
+      renderSummaryTable(res);
+    }).withFailureHandler(err => toast(err.message)).adminGetMultiMonthSummary(APASS, fm, tm);
+  }
+
+  function renderSummaryTable(data) {
+    const box = document.getElementById('multiSummaryBox');
+    if (!data || !data.summaryList || !data.summaryList.length) {
+      box.innerHTML = '<div style="color:var(--muted)">આ સમયગાળામાં કોઈ હિસાબ મળ્યો નથી.</div>';
+      return;
+    }
+    box.innerHTML = `
+      <div id="multiSummaryPrintArea" class="sheet-paper" style="color:#000;">
+        <h3 style="text-align:center; margin:0 0 10px;">શાંતિકુંજ બંગ્લોઝ, વિજાપુર - માસવાર હિસાબ સરવૈયું</h3>
+        <table>
+          <thead>
+            <tr><th>માસ</th><th>કુલ આવક (₹)</th><th>કુલ જાવક (₹)</th><th>જમા સિલક (₹)</th></tr>
+          </thead>
+          <tbody>
+            ${data.summaryList.map(m => `
+              <tr>
+                <td><b>${m.name}</b></td>
+                <td class="amt-col" style="color:green;">₹ ${m.income.toLocaleString('en-IN')}</td>
+                <td class="amt-col" style="color:red;">₹ ${m.expense.toLocaleString('en-IN')}</td>
+                <td class="amt-col" style="color:blue;">₹ ${m.balance.toLocaleString('en-IN')}</td>
+              </tr>
+            `).join('')}
+            <tr style="background:#f1f5f9; font-weight:700;">
+              <td>કુલ સરવાળો</td>
+              <td class="amt-col" style="color:green;">₹ ${data.totalIncome.toLocaleString('en-IN')}</td>
+              <td class="amt-col" style="color:red;">₹ ${data.totalExpense.toLocaleString('en-IN')}</td>
+              <td class="amt-col" style="color:blue;">₹ ${data.totalBalance.toLocaleString('en-IN')}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    `;
+  }
+
+  function exportSummaryCSV() {
+    if (!currentSummaryData || !currentSummaryData.summaryList) return toast('પહેલા સરવૈયું શોધો.');
+    let csv = "માસ,કુલ આવક,કુલ જાવક,જમા સિલક\n";
+    currentSummaryData.summaryList.forEach(m => {
+      csv += `"${m.name}",${m.income},${m.expense},${m.balance}\n`;
+    });
+    csv += `"કુલ સરવાળો",${currentSummaryData.totalIncome},${currentSummaryData.totalExpense},${currentSummaryData.totalBalance}\n`;
+
+    const blob = new Blob(["\ufeff" + csv], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.setAttribute("download", "Shantikunj_Hisab_Sarvaiyu.csv");
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+
+  function printMultiSummary() {
+    if (!currentSummaryData) return toast('પહેલા સરવૈયું શોધો.');
+    window.print();
+  }
+
+  // --- Audit Register ---
   function loadAuditRegister() {
     google.script.run.withSuccessHandler(list => {
       const box = document.getElementById('auditLogList');
@@ -1004,28 +1146,68 @@
     }).withFailureHandler(err => toast(err.message)).getAuditRegister(APASS);
   }
 
+  // --- Announcements (Add, Edit, Delete, Photo) ---
   function renderAdminAnnouncements() {
     const box = document.getElementById('admAnnList');
     box.innerHTML = (DATA?.announcements || []).map(a => `
-      <div style="background:#081525; padding:10px; border-radius:8px; margin-bottom:8px; border-left:3px solid var(--gold);">
-        <b>${a.subject}</b> (${a.date})
+      <div style="background:#081525; padding:12px; border-radius:8px; margin-bottom:10px; border-left:3px solid var(--gold);">
+        <b>${a.subject}</b>
         <p style="margin:4px 0; font-size:15px;">${a.message}</p>
-        <button class="btn red" style="padding:4px 10px; font-size:13px;" onclick="deleteAnnouncement('${a.id}')">ડિલીટ</button>
+        ${a.photo ? `<img src="${a.photo}" style="max-height:80px; border-radius:6px; margin:4px 0; display:block;">` : ''}
+        <div style="display:flex; gap:8px; margin-top:8px;">
+          <button class="btn gold" style="padding:4px 12px; font-size:13px;" onclick="editAnnouncement('${a.id}')"><i class="fa-solid fa-pen"></i> એડિટ</button>
+          <button class="btn red" style="padding:4px 12px; font-size:13px;" onclick="deleteAnnouncement('${a.id}')"><i class="fa-solid fa-trash"></i> ડિલીટ</button>
+        </div>
       </div>
     `).join('') || '<div style="color:var(--muted)">કોઈ જાહેરાત નથી.</div>';
   }
 
+  function previewAnnPhoto(input) {
+    if (input.files && input.files[0]) {
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        tempAnnPhotoBase64 = e.target.result;
+        document.getElementById('annPhotoPreview').innerHTML = `<img src="${tempAnnPhotoBase64}" style="max-height:90px; border-radius:8px;">`;
+      };
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+
+  function editAnnouncement(id) {
+    const ann = DATA?.announcements?.find(x => String(x.id) === String(id));
+    if (!ann) return;
+    document.getElementById('annFormTitle').textContent = 'જાહેરાત સુધારો (Edit)';
+    document.getElementById('annEditId').value = ann.id;
+    document.getElementById('annSub').value = ann.subject;
+    document.getElementById('annMsg').value = ann.message;
+    tempAnnPhotoBase64 = ann.photo || '';
+    document.getElementById('annPhotoPreview').innerHTML = tempAnnPhotoBase64 ? `<img src="${tempAnnPhotoBase64}" style="max-height:90px; border-radius:8px;">` : '';
+    document.getElementById('btnSaveAnn').textContent = 'સુધારો સેવ કરો';
+    document.getElementById('btnCancelEditAnn').classList.remove('hidden');
+  }
+
+  function cancelEditAnn() {
+    document.getElementById('annFormTitle').textContent = 'જાહેરાત ઉમેરો';
+    document.getElementById('annEditId').value = '';
+    document.getElementById('annSub').value = '';
+    document.getElementById('annMsg').value = '';
+    tempAnnPhotoBase64 = '';
+    document.getElementById('annPhotoPreview').innerHTML = '';
+    document.getElementById('btnSaveAnn').textContent = 'જાહેરાત સેવ કરો';
+    document.getElementById('btnCancelEditAnn').classList.add('hidden');
+  }
+
   function saveAnnouncement() {
     const f = {
+      id: document.getElementById('annEditId').value,
       subject: document.getElementById('annSub').value,
       message: document.getElementById('annMsg').value,
-      date: document.getElementById('annDate').value || new Date().toLocaleDateString('en-GB'),
-      priority: document.getElementById('annPri').value
+      photo: tempAnnPhotoBase64
     };
-    if (!f.subject || !f.message) return toast('વિગત દાખલ કરો.');
+    if (!f.subject || !f.message) return toast('વિષય અને લખાણ દાખલ કરો.');
 
     google.script.run.withSuccessHandler(d => {
-      DATA = d; renderAnnouncements(d.announcements); renderAdminAnnouncements();
+      DATA = d; renderAnnouncements(d.announcements); renderAdminAnnouncements(); cancelEditAnn();
       toast('જાહેરાત સેવ થઈ.');
     }).withFailureHandler(err => toast(err.message)).adminSaveAnnouncement(APASS, f);
   }
@@ -1038,6 +1220,7 @@
     }).withFailureHandler(err => toast(err.message)).adminDeleteAnnouncement(APASS, id);
   }
 
+  // --- Meetings ---
   function renderAdminMeetings() {
     const box = document.getElementById('admMeetList');
     box.innerHTML = (DATA?.meetings || []).map(m => `
@@ -1073,26 +1256,46 @@
     }).withFailureHandler(err => toast(err.message)).adminDeleteMeeting(APASS, id);
   }
 
+  // --- Complaints Management (with Filtering) ---
   function loadAdminComplaints() {
     google.script.run.withSuccessHandler(list => {
-      const box = document.getElementById('admCompList');
-      box.innerHTML = list.map(c => `
-        <div style="background:#081525; padding:12px; border-radius:8px; margin-bottom:8px; border-left:4px solid ${c.status === 'પૂર્ણ' ? 'var(--ok)' : 'var(--danger)'};">
-          <b>${c.id} (મકાન નં. ${c.houseNo})</b> - <i>${c.subject}</i>
-          <p style="margin:4px 0; font-size:15px;">${c.desc}</p>
-          ${c.status !== 'પૂર્ણ' ? `<button class="btn green" style="padding:4px 10px; font-size:13px;" onclick="completeComplaint('${c.id}')">પૂર્ણ માર્ક કરો</button>` : '<span style="color:var(--ok)">પૂર્ણ</span>'}
-        </div>
-      `).join('') || '<div style="color:var(--muted)">કોઈ ફરિયાદ નથી.</div>';
+      allComplaintsCache = list || [];
+      applyComplaintFilter();
     }).withFailureHandler(err => toast(err.message)).getComplaintsList(APASS);
+  }
+
+  function applyComplaintFilter() {
+    const statusFlt = document.getElementById('fltCompStatus').value;
+    const houseFlt = document.getElementById('fltCompHouse').value.trim();
+    const subjFlt = document.getElementById('fltCompSubject').value.trim().toLowerCase();
+
+    const filtered = allComplaintsCache.filter(c => {
+      if (statusFlt !== 'all' && c.status !== statusFlt) return false;
+      if (houseFlt && String(c.houseNo) !== houseFlt) return false;
+      if (subjFlt && !String(c.subject).toLowerCase().includes(subjFlt)) return false;
+      return true;
+    });
+
+    const box = document.getElementById('admCompList');
+    box.innerHTML = filtered.map(c => `
+      <div style="background:#081525; padding:12px; border-radius:8px; margin-bottom:8px; border-left:4px solid ${c.status === 'પૂર્ણ' ? 'var(--ok)' : 'var(--danger)'};">
+        <b>${c.id} (મકાન નં. ${c.houseNo})</b> - <i>${c.subject}</i>
+        <p style="margin:4px 0; font-size:15px;">${c.desc}</p>
+        <div style="font-size:14px; color:var(--muted); margin-bottom:6px;">તારીખ: ${c.date} • નામ: ${c.name}</div>
+        ${c.status !== 'પૂર્ણ' ? `<button class="btn green" style="padding:4px 10px; font-size:13px;" onclick="completeComplaint('${c.id}')">પૂર્ણ માર્ક કરો</button>` : '<span style="color:var(--ok); font-weight:700;">✅ પૂર્ણ થયેલ</span>'}
+      </div>
+    `).join('') || '<div style="color:var(--muted)">કોઈ ફરિયાદ ફિલ્ટર મુજબ મળી નથી.</div>';
   }
 
   function completeComplaint(id) {
     google.script.run.withSuccessHandler(list => {
-      loadAdminComplaints();
-      toast('ફરિયાદ પૂર્ણ થઈ.');
+      allComplaintsCache = list;
+      applyComplaintFilter();
+      toast('ફરિયાદ પૂર્ણ માર્ક થઈ.');
     }).withFailureHandler(err => toast(err.message)).adminUpdateComplaint(APASS, id, 'પૂર્ણ');
   }
 
+  // --- Committee Photo and Duty Update ---
   function onAdminMemberChange() {
     const row = document.getElementById('admMemberSelect').value;
     const mem = DATA?.committee?.find(x => String(x.row) === String(row));
@@ -1116,10 +1319,11 @@
   function saveMemberPhoto() {
     const row = document.getElementById('admMemberSelect').value;
     const duty = document.getElementById('admMemberDuty').value;
+    toast('અપડેટ થઈ રહ્યું છે, કૃપા કરી રાહ જુઓ...');
     google.script.run.withSuccessHandler(d => {
       DATA = d; renderCommittee(); populateAdminControls();
-      toast('કમિટી વિગતો અપડેટ થઈ ગઈ.');
-    }).withFailureHandler(err => toast(err.message)).adminUpdateCommitteeMember(APASS, { row: row, photo: tempPhotoBase64, duty: duty });
+      toast('કમિટી વિગતો સફળતાપૂર્વક અપડેટ થઈ ગઈ.');
+    }).withFailureHandler(err => toast('એરર: ' + err.message)).adminUpdateCommitteeMember(APASS, { row: row, photo: tempPhotoBase64, duty: duty });
   }
 
   window.startClock=startClock; window.setupYearDropdownInstant=setupYearDropdownInstant; window.loadPortalData=loadPortalData;
@@ -1127,11 +1331,13 @@
   window.openAdminModal=openAdminModal; window.closeAdminModal=closeAdminModal; window.togglePasswordView=togglePasswordView;
   window.doAdminLogin=doAdminLogin; window.adminLogout=adminLogout; window.switchAdmTab=switchAdmTab;
   window.saveDirectEntry=saveDirectEntry; window.saveAdminMonth=saveAdminMonth; window.saveAnnouncement=saveAnnouncement;
-  window.deleteAnnouncement=deleteAnnouncement; window.saveMeeting=saveMeeting; window.deleteMeeting=deleteMeeting;
+  window.editAnnouncement=editAnnouncement; window.cancelEditAnn=cancelEditAnn; window.deleteAnnouncement=deleteAnnouncement;
+  window.previewAnnPhoto=previewAnnPhoto; window.saveMeeting=saveMeeting; window.deleteMeeting=deleteMeeting;
   window.lookupComplaintHouse=lookupComplaintHouse; window.submitComplaint=submitComplaint; window.completeComplaint=completeComplaint;
-  window.onAdminMemberChange=onAdminMemberChange; window.previewPhoto=previewPhoto; window.saveMemberPhoto=saveMemberPhoto;
-  window.toggleMemberLoginPanel=toggleMemberLoginPanel; window.reqAuthCode=reqAuthCode; window.submitAuthCode=submitAuthCode;
-  window.openStatement=openStatement; window.closeStatementAndHome=closeStatementAndHome;
+  window.applyComplaintFilter=applyComplaintFilter; window.onAdminMemberChange=onAdminMemberChange; window.previewPhoto=previewPhoto;
+  window.saveMemberPhoto=saveMemberPhoto; window.toggleMemberLoginPanel=toggleMemberLoginPanel; window.reqAuthCode=reqAuthCode;
+  window.submitAuthCode=submitAuthCode; window.openStatement=openStatement; window.closeStatementAndHome=closeStatementAndHome;
+  window.fetchMultiMonthSummary=fetchMultiMonthSummary; window.exportSummaryCSV=exportSummaryCSV; window.printMultiSummary=printMultiSummary;
 </script>
 </body>
 </html>
