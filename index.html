@@ -3,7 +3,7 @@
 <head>
   <base target="_top">
   <meta charset="utf-8">
-  <title>શાંતિકુંજ બંગ્લોઝ, વિજાપુર</title>
+  <title>શાંતિકુંજ બંગ્લોઝ - સોસાયટી પોર્ટલ</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <link href="https://fonts.googleapis.com/css2?family=Hind+Vadodara:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -32,11 +32,12 @@
     .clock { font-family: monospace; font-size: 18px; font-weight: 700; color: var(--gold); }
     
     .header {
-      padding: 18px; border: 2px solid #204b77; border-radius: 20px;
+      padding: 22px; border: 2px solid #204b77; border-radius: 20px;
       background: linear-gradient(135deg, #09213d, #0d1624); text-align: center;
       box-shadow: 0 10px 30px rgba(0,0,0,0.6); margin-bottom: 16px;
     }
     .header h1 { margin: 0; font-size: 32px; color: var(--pri); font-weight: 700; }
+    .header p { margin: 6px 0 0; color: var(--muted); font-size: 17px; font-weight: 500; }
 
     .ticker-wrap {
       display: flex; align-items: center; background: #0c233c;
@@ -52,9 +53,7 @@
     .motion-ads-grid {
       display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px; margin-bottom: 20px;
     }
-    @media (max-width: 600px) {
-      .motion-ads-grid { grid-template-columns: 1fr; }
-    }
+    @media (max-width: 600px) { .motion-ads-grid { grid-template-columns: 1fr; } }
     
     .ad-card {
       background: linear-gradient(145deg, #13243a, #0b1726);
@@ -82,25 +81,7 @@
       border-radius: 6px; margin-bottom: 8px; letter-spacing: 0.5px;
     }
     .ad-heading { margin: 0 0 10px; font-size: 21px; font-weight: 700; }
-    .ad-body-content {
-      font-size: 16px; line-height: 1.6; color: #f8fafc;
-      overflow-wrap: break-word; word-break: break-word;
-    }
-    .ad-body-content table {
-      width: 100%; border-collapse: collapse; margin: 8px 0; background: rgba(255,255,255,0.05);
-    }
-    .ad-body-content th, .ad-body-content td {
-      border: 1px solid rgba(255,255,255,0.2); padding: 6px 10px; font-size: 15px; color: #fff;
-    }
-    .ad-body-content ul, .ad-body-content ol { margin: 6px 0 6px 20px; padding: 0; }
-    .ad-body-content li { margin-bottom: 4px; }
-    
-    .ad-img-thumb {
-      width: 100%; max-height: 220px; object-fit: cover; border-radius: 12px;
-      margin-top: 10px; cursor: pointer; border: 2px solid rgba(255,255,255,0.2);
-      transition: transform 0.2s;
-    }
-    .ad-img-thumb:hover { transform: scale(1.02); }
+    .ad-body-content { font-size: 16px; line-height: 1.6; color: #f8fafc; overflow-wrap: break-word; }
 
     .nav { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; }
     .btn {
@@ -154,18 +135,22 @@
     }
     .member-login-panel h4 { margin: 0 0 10px; color: var(--gold); font-size: 18px; }
 
+    /* અંકો કપાય નહિ તે માટેનું રેસ્પોન્સિવ ટેબલ સ્ટાઇલ */
     .sheet-paper {
       background: #ffffff; color: #0f172a; border-radius: 14px; padding: 24px;
       margin-top: 20px; box-shadow: 0 10px 35px rgba(0,0,0,0.6);
+      overflow-x: auto;
     }
     .sheet-paper h2 { text-align: center; margin: 0; font-size: 24px; color: #0f172a; font-weight: 700; }
     .sheet-paper p { text-align: center; color: #475569; margin: 6px 0 18px; font-size: 16px; }
     .tables-split { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
-    @media (max-width: 768px) { .tables-split { grid-template-columns: 1fr; } }
-    table { width: 100%; border-collapse: collapse; font-size: 15px; }
+    @media (max-width: 820px) { .tables-split { grid-template-columns: 1fr; } }
+    
+    .table-responsive { width: 100%; overflow-x: auto; margin-bottom: 8px; }
+    table { width: 100%; border-collapse: collapse; font-size: 15px; min-width: 320px; }
     th, td { border: 1px solid #cbd5e1; padding: 9px; text-align: left; }
     th { background: #f1f5f9; color: #0f172a; text-align: center; font-weight: 700; }
-    .amt-col { text-align: right; font-family: monospace; font-weight: 700; font-size: 16px; }
+    .amt-col { text-align: right; font-family: monospace; font-weight: 700; font-size: 16px; white-space: nowrap; }
 
     .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 16px 0; }
     @media (max-width: 768px) { .stats-grid { grid-template-columns: 1fr; } }
@@ -174,7 +159,7 @@
     .stat-exp { background: linear-gradient(135deg, #991b1b, #b91c1c); }
     .stat-bal { background: linear-gradient(135deg, #0369a1, #0284c7); }
     .stat-box small { display: block; opacity: 0.9; font-size: 15px; }
-    .stat-box strong { font-size: 26px; font-family: monospace; }
+    .stat-box strong { font-size: 26px; font-family: monospace; white-space: nowrap; }
 
     .comm-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; }
     .comm-card {
@@ -200,38 +185,13 @@
     }
     .input:focus { outline: none; border-color: var(--pri); }
 
-    .editor-toolbar {
-      display: flex; gap: 6px; flex-wrap: wrap; background: #0c1f36; padding: 8px;
-      border-radius: 8px 8px 0 0; border: 1.5px solid var(--line); border-bottom: none;
-    }
-    .tb-btn {
-      background: #132b49; color: #fff; border: 1px solid #294b77; border-radius: 6px;
-      padding: 6px 12px; font-size: 14px; cursor: pointer; display: inline-flex; align-items: center; gap: 4px;
-    }
-    .tb-btn:hover { background: var(--pri); color: #000; }
-    .rich-textarea {
-      width: 100%; min-height: 140px; background: #081525; border: 1.5px solid var(--line);
-      border-radius: 0 0 10px 10px; color: #fff; padding: 12px; font-size: 16px;
-      overflow-y: auto; outline: none; margin-bottom: 14px;
-    }
-    .rich-textarea:focus { border-color: var(--pri); }
-
     .modal {
       position: fixed; inset: 0; background: rgba(0,0,0,0.88); z-index: 9999;
       display: flex; align-items: center; justify-content: center; padding: 16px;
     }
     .modal-box {
-      width: min(1050px, 100%); max-height: 92vh; overflow-y: auto;
+      width: min(1000px, 100%); max-height: 92vh; overflow-y: auto;
       background: #091728; border: 1.5px solid #2563eb; border-radius: 18px; padding: 22px;
-    }
-
-    .lightbox-modal {
-      position: fixed; inset: 0; background: rgba(0,0,0,0.92); z-index: 100000;
-      display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 16px;
-    }
-    .lightbox-img {
-      max-width: 90vw; max-height: 80vh; object-fit: contain; border-radius: 12px;
-      box-shadow: 0 0 30px rgba(56,189,248,0.5);
     }
     
     .footer {
@@ -254,8 +214,8 @@
 
     @media print {
       body * { visibility: hidden; }
-      #printArea, #printArea *, #multiSummaryPrintArea, #multiSummaryPrintArea * { visibility: visible; }
-      #printArea, #multiSummaryPrintArea { position: absolute; left: 0; top: 0; width: 100%; max-width: 100%; background: #fff !important; color: #000 !important; }
+      #printArea, #printArea * { visibility: visible; }
+      #printArea { position: absolute; left: 0; top: 0; width: 100%; max-width: 100%; background: #fff !important; color: #000 !important; }
       th { background: #f1f5f9 !important; color: #000 !important; }
       td, th { border: 1px solid #64748b !important; }
       .no-print { display: none !important; }
@@ -274,7 +234,8 @@
   </div>
 
   <header class="header no-print">
-    <h1>શાંતિકુંજ બંગ્લોઝ, વિજાપુર</h1>
+    <h1>શાંતિકુંજ બંગ્લોઝ સોસાયટી</h1>
+    <p>માસવાર આવક-જાવક હિસાબ • સેવા & ફરિયાદ પોર્ટલ • સોસાયટી ડિજિટલ સંચાલન</p>
   </header>
 
   <div class="ticker-wrap no-print">
@@ -310,7 +271,7 @@
     <div id="singleMonthContainer" class="no-print"></div>
 
     <div id="statementViewBox" class="hidden">
-      <div class="no-print" style="display:flex; justify-content:space-between; align-items:center; margin:18px 0;">
+      <div class="no-print" style="display:flex; justify-content:space-between; align-items:center; margin:18px 0; flex-wrap:wrap; gap:10px;">
         <button class="btn red" onclick="closeStatementAndHome()"><i class="fa-solid fa-arrow-left"></i> હિસાબ બંધ કરો અને હોમ પર જાઓ</button>
         <button class="btn green" onclick="window.print()"><i class="fa-solid fa-file-pdf"></i> A4 સાઈઝ PDF પ્રિન્ટ</button>
       </div>
@@ -331,30 +292,33 @@
       </div>
 
       <div id="printArea" class="sheet-paper">
-        <h2>શાંતિકુંજ બંગ્લોઝ, વિજાપુર</h2>
+        <h2>શાંતિકુંજ બંગ્લોઝ સોસાયટી, વિજાપુર</h2>
         <p id="stSheetSubTitle">આનંદપુરા ચોકડી, વિજાપુર • માસવાર આવક-જાવક હિસાબ</p>
 
         <div class="tables-split">
           <div>
-            <div style="background:#065f46; color:#fff; padding:8px; font-weight:700; text-align:center; font-size:16px;">સોસાયટી આવક વિગત</div>
-            <table>
-              <thead><tr><th width="15%">ક્રમ</th><th>વિગત</th><th width="32%">રકમ (₹)</th></tr></thead>
-              <tbody id="tbIncBody"></tbody>
-            </table>
+            <div style="background:#065f46; color:#fff; padding:8px; font-weight:700; text-align:center; font-size:16px; border-radius:4px 4px 0 0;">સોસાયટી આવક વિગત</div>
+            <div class="table-responsive">
+              <table>
+                <thead><tr><th width="14%">ક્રમ</th><th>વિગત</th><th width="36%">રકમ (₹)</th></tr></thead>
+                <tbody id="tbIncBody"></tbody>
+              </table>
+            </div>
           </div>
           <div>
-            <div style="background:#991b1b; color:#fff; padding:8px; font-weight:700; text-align:center; font-size:16px;">સોસાયટી ખર્ચ જાવક વિગત</div>
-            <table>
-              <thead><tr><th width="12%">ક્રમ</th><th>વિગત</th><th>વાઉચર</th><th>તારીખ</th><th width="28%">રકમ (₹)</th></tr></thead>
-              <tbody id="tbExpBody"></tbody>
-            </table>
+            <div style="background:#991b1b; color:#fff; padding:8px; font-weight:700; text-align:center; font-size:16px; border-radius:4px 4px 0 0;">સોસાયટી ખર્ચ જાવક વિગત</div>
+            <div class="table-responsive">
+              <table>
+                <thead><tr><th width="12%">ક્રમ</th><th>વિગત</th><th width="18%">વાઉચર</th><th width="22%">તારીખ</th><th width="28%">રકમ (₹)</th></tr></thead>
+                <tbody id="tbExpBody"></tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </main>
 
-  <!-- Complaint Section -->
   <section id="complaintSection" class="hidden">
     <div style="max-width:640px; margin:auto; background:#0d1e34; border:1.5px solid var(--line); border-radius:18px; padding:24px;">
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; border-bottom:1px solid var(--line); padding-bottom:8px;">
@@ -376,14 +340,8 @@
           <div id="cpMemberName" style="color:#fff; font-size:15px; margin-top:6px;"></div>
         </div>
 
-        <label style="font-weight:600; color:var(--muted)">વિષય (જવાબદારી) પસંદ કરો:</label>
-        <select id="cpSubject" class="input" onchange="onComplaintSubjectChange()"></select>
-
-        <div id="cpAssignedInfoBox" class="hidden" style="background:#091b2c; border:1.5px solid var(--pri); border-radius:10px; padding:12px; margin-bottom:14px;">
-          <div style="font-size:14px; color:var(--gold); font-weight:700;"><i class="fa-solid fa-user-shield"></i> આ બાબતે જવાબદાર કમિટી સભ્ય:</div>
-          <div id="cpAssignedName" style="font-size:17px; font-weight:700; color:#fff; margin:4px 0;"></div>
-          <div id="cpAssignedContact" style="font-size:15px; color:var(--muted);"></div>
-        </div>
+        <label style="font-weight:600; color:var(--muted)">વિષય પસંદ કરો:</label>
+        <select id="cpSubject" class="input"></select>
 
         <label style="font-weight:600; color:var(--muted)">વિગતવાર ફરિયાદ:</label>
         <textarea id="cpDesc" class="input" rows="4" placeholder="અહીં આપની વિગત લખો..."></textarea>
@@ -402,14 +360,6 @@
   </section>
 </div>
 
-<div id="photoLightboxModal" class="lightbox-modal hidden" onclick="closeLightbox()">
-  <div style="position:absolute; top:20px; right:25px;">
-    <button class="btn red" style="font-size:16px; padding:8px 18px;" onclick="closeLightbox()"><i class="fa-solid fa-xmark"></i> CLOSE (બંધ કરો)</button>
-  </div>
-  <img id="lightboxTargetImg" class="lightbox-img" src="" alt="Full View Photo" onclick="event.stopPropagation()">
-  <div style="color:#cbd5e1; font-size:15px; margin-top:12px;">સ્ક્રીન પર ક્યાંય પણ ક્લિક કરીને મુખ્ય પેજ પર જઈ શકો છો</div>
-</div>
-
 <footer class="footer no-print">
   <marquee class="footer-quote" scrollamount="5">"સહકાર, સદ્ભાવના અને પારદર્શિતા – એ જ શાંતિકુંજ પરિવારની ખરી ઓળખ અને શક્તિ છે."</marquee>
   <div class="footer-row">
@@ -419,7 +369,6 @@
   </div>
 </footer>
 
-<!-- Admin Modal -->
 <div id="adminModal" class="modal hidden">
   <div class="modal-box">
     <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1.5px solid var(--line); padding-bottom:10px; margin-bottom:16px;">
@@ -440,20 +389,18 @@
       <div style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:16px;">
         <button class="btn active" id="btnAdmTabEntry" onclick="switchAdmTab('entry')">નવી એન્ટ્રી & લિસ્ટ</button>
         <button class="btn" id="btnAdmTabMonth" onclick="switchAdmTab('month')">માસ ઉમેરો / કંટ્રોલ</button>
-        <button class="btn" id="btnAdmTabSummary" onclick="switchAdmTab('summary')"><i class="fa-solid fa-chart-pie"></i> હિસાબ સરવૈયું</button>
         <button class="btn" id="btnAdmTabAudit" onclick="switchAdmTab('audit')"><i class="fa-solid fa-eye"></i> View Register</button>
-        <button class="btn" id="btnAdmTabAnn" onclick="switchAdmTab('ann')">જાહેરાતો (એડિટર)</button>
+        <button class="btn" id="btnAdmTabAnn" onclick="switchAdmTab('ann')">જાહેરાતો</button>
         <button class="btn" id="btnAdmTabMeet" onclick="switchAdmTab('meet')">મીટિંગ</button>
         <button class="btn" id="btnAdmTabComp" onclick="switchAdmTab('comp')">ફરિયાદો</button>
-        <button class="btn" id="btnAdmTabPhoto" onclick="switchAdmTab('photo')">કમિટી ફોટો & જવાબદારી</button>
+        <button class="btn" id="btnAdmTabPhoto" onclick="switchAdmTab('photo')">કમિટી ફોટો</button>
         <button class="btn red" onclick="adminLogout()">લૉગ આઉટ</button>
       </div>
 
-      <!-- Tab 1: Direct Entry & Delete Option -->
       <div id="admTabEntryView">
         <div style="background:#0c1d31; border:1px solid var(--line); border-radius:14px; padding:18px;">
           <h3>સીધી આવક / જાવક એન્ટ્રી ઉમેરો</h3>
-          <label style="font-size:14px; color:var(--muted)">માસ અને વર્ષ પસંદ કરો:</label>
+          <label style="font-size:14px; color:var(--muted)">વર્ષ અને માસ પસંદ કરો:</label>
           <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
             <select id="aeYearSelect" class="input"></select>
             <select id="aeMonthSelect" class="input"></select>
@@ -475,7 +422,6 @@
           <input id="aeAmount" class="input" type="number" placeholder="રકમ (₹)">
           <button class="btn green" style="width:100%" onclick="saveDirectEntry()">શીટમાં સેવ કરો</button>
 
-          <!-- Manage / Delete Entries of Selected Month -->
           <hr style="border-color:var(--line); margin:20px 0 16px;">
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
             <h4 style="margin:0; color:var(--gold); font-size:17px;"><i class="fa-solid fa-list-check"></i> પસંદ કરેલ માસની હાલની એન્ટ્રીઓ (કાઢી નાખવા માટે):</h4>
@@ -487,7 +433,6 @@
         </div>
       </div>
 
-      <!-- Tab 2: Month Control -->
       <div id="admTabMonthView" class="hidden">
         <div style="background:#0c1d31; border:1px solid var(--line); border-radius:14px; padding:18px;">
           <h3>નવો માસ ઉમેરો અને કંટ્રોલ કરો</h3>
@@ -502,31 +447,6 @@
         </div>
       </div>
 
-      <!-- Tab 3: Summary -->
-      <div id="admTabSummaryView" class="hidden">
-        <div style="background:#0c1d31; border:1px solid var(--line); border-radius:14px; padding:18px;">
-          <h3><i class="fa-solid fa-file-invoice"></i> માસવાર હિસાબ સરવૈયું</h3>
-          <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
-            <div>
-              <label style="color:var(--muted)">આ માસ થી (From):</label>
-              <select id="smFromMonth" class="input"></select>
-            </div>
-            <div>
-              <label style="color:var(--muted)">આ માસ સુધી (To):</label>
-              <select id="smToMonth" class="input"></select>
-            </div>
-          </div>
-          <div style="display:flex; gap:10px; margin-top:10px; flex-wrap:wrap;">
-            <button class="btn green" onclick="fetchMultiMonthSummary()"><i class="fa-solid fa-magnifying-glass"></i> સરવૈયું શોધો</button>
-            <button class="btn gold" onclick="exportSummaryCSV()"><i class="fa-solid fa-file-excel"></i> એક્સેલ (CSV) ડાઉનલોડ</button>
-            <button class="btn" onclick="printMultiSummary()"><i class="fa-solid fa-print"></i> પ્રિન્ટ / PDF ડાઉનલોડ</button>
-          </div>
-
-          <div id="multiSummaryBox" style="margin-top:18px;"></div>
-        </div>
-      </div>
-
-      <!-- Tab 4: Audit -->
       <div id="admTabAuditView" class="hidden">
         <div style="background:#0c1d31; border:1px solid var(--line); border-radius:14px; padding:18px;">
           <h3><i class="fa-solid fa-list-check"></i> સભ્ય હિસાબ વ્યુ રજિસ્ટર (કોણે કયો માસ જોયો)</h3>
@@ -534,62 +454,31 @@
         </div>
       </div>
 
-      <!-- Tab 5: Announcements -->
       <div id="admTabAnnView" class="hidden">
         <div style="background:#0c1d31; border:1px solid var(--line); border-radius:14px; padding:18px;">
-          <h3 id="annFormTitle"><i class="fa-solid fa-wand-magic-sparkles"></i> આકર્ષક જાહેરાત ક્રિએટર / એડિટર</h3>
-          <input type="hidden" id="annEditId" value="">
-          
+          <h3>જાહેરાત ઉમેરો</h3>
           <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
             <div>
-              <label style="color:var(--muted); font-size:15px;">જાહેરાત સ્લોટ:</label>
+              <label style="color:var(--muted); font-size:14px;">સ્લોટ:</label>
               <select id="annSlot" class="input">
-                <option value="1">જાહેરાત ૧ (પ્રથમ સ્લોટ - બ્લુ થીમ)</option>
-                <option value="2">જાહેરાત ૨ (બીજો સ્લોટ - ગોલ્ડ થીમ)</option>
-                <option value="3">જાહેરાત ૩ (ત્રીજો સ્લોટ - ગ્રીન થીમ)</option>
+                <option value="1">જાહેરાત ૧ (બ્લુ થીમ)</option>
+                <option value="2">જાહેરાત ૨ (ગોલ્ડ થીમ)</option>
+                <option value="3">જાહેરાત ૩ (ગ્રીન થીમ)</option>
               </select>
             </div>
             <div>
-              <label style="color:var(--muted); font-size:15px;">ફોટો ક્રોપ રેશિયો:</label>
-              <select id="annCropRatio" class="input">
-                <option value="16:9">લેન્ડસ્કેપ (16:9 - બેસ્ટ લૂક)</option>
-                <option value="1:1">ચોરસ (Square 1:1)</option>
-                <option value="auto">ઓરિજિનલ (Auto Fit)</option>
-              </select>
+              <label style="color:var(--muted); font-size:14px;">વિષય:</label>
+              <input id="annSub" class="input" placeholder="વિષય / શીર્ષક">
             </div>
           </div>
-
-          <input id="annSub" class="input" placeholder="જાહેરાતનો મુખ્ય વિષય / ટાઈટલ">
-
-          <div class="editor-toolbar">
-            <button type="button" class="tb-btn" onclick="execEditorCmd('bold')"><b>B</b></button>
-            <button type="button" class="tb-btn" onclick="execEditorCmd('italic')"><i>I</i></button>
-            <button type="button" class="tb-btn" onclick="execEditorCmd('underline')"><u>U</u></button>
-            <button type="button" class="tb-btn" onclick="execEditorCmd('insertUnorderedList')"><i class="fa-solid fa-list-ul"></i> બુલેટ</button>
-            <button type="button" class="tb-btn" onclick="execEditorCmd('insertOrderedList')"><i class="fa-solid fa-list-ol"></i> નંબર</button>
-            <button type="button" class="tb-btn" onclick="insertEditorTable()"><i class="fa-solid fa-table"></i> ટેબલ</button>
-            <span style="display:inline-flex; align-items:center; gap:4px; font-size:13px; color:var(--muted); margin-left:6px;">
-              કલર: <input type="color" id="editorColorPicker" value="#ffffff" onchange="execEditorColor(this.value)" style="border:none; width:30px; height:28px; cursor:pointer; background:none;">
-            </span>
-          </div>
-          <div id="annRichBody" class="rich-textarea" contenteditable="true" placeholder="અહીં આકર્ષક લખાણ, બુલેટ કે ટેબલ લખો..."></div>
-
-          <label style="color:var(--muted); font-size:15px;">જાહેરાતમાં ફોટો ઉમેરો:</label>
-          <input type="file" id="annPhotoFile" class="input" accept="image/*" onchange="previewAndCropAnnPhoto(this)">
-          <div id="annPhotoPreview" style="margin:6px 0;"></div>
-
-          <div style="display:flex; gap:8px;">
-            <button class="btn green" id="btnSaveAnn" onclick="saveAnnouncement()"><i class="fa-solid fa-floppy-disk"></i> જાહેરાત સેવ કરો</button>
-            <button class="btn hidden" id="btnCancelEditAnn" onclick="cancelEditAnn()">રદ કરો</button>
-          </div>
-          
+          <textarea id="annMsg" class="input" rows="3" placeholder="જાહેરાતનું વિગતવાર લખાણ..."></textarea>
+          <button class="btn green" onclick="saveAnnouncement()">જાહેરાત સેવ કરો</button>
           <hr style="border-color:var(--line); margin:16px 0;">
           <h4>હાલની જાહેરાતો:</h4>
           <div id="admAnnList"></div>
         </div>
       </div>
 
-      <!-- Tab 6: Meetings -->
       <div id="admTabMeetView" class="hidden">
         <div style="background:#0c1d31; border:1px solid var(--line); border-radius:14px; padding:18px;">
           <h3>મીટિંગ ઉમેરો</h3>
@@ -607,36 +496,20 @@
         </div>
       </div>
 
-      <!-- Tab 7: Complaints -->
       <div id="admTabCompView" class="hidden">
         <div style="background:#0c1d31; border:1px solid var(--line); border-radius:14px; padding:18px;">
-          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; margin-bottom:12px;">
-            <h3 style="margin:0;">ફરિયાદ પોર્ટલ નિયંત્રણ</h3>
-            <button class="btn gold" onclick="exportComplaintsCSV()"><i class="fa-solid fa-file-excel"></i> ફરિયાદ રિપોર્ટ ડાઉનલોડ (Excel/CSV)</button>
-          </div>
-
-          <div style="background:#132438; border-radius:12px; padding:14px; margin-bottom:16px;">
-            <h4 style="margin:0 0 10px; color:var(--danger);"><i class="fa-solid fa-clock"></i> પેન્ડિંગ કામગીરી (Pending)</h4>
-            <div id="admCompPendingList"></div>
-          </div>
-
-          <div style="background:#132438; border-radius:12px; padding:14px;">
-            <h4 style="margin:0 0 10px; color:var(--ok);"><i class="fa-solid fa-circle-check"></i> પૂર્ણ થયેલ કામગીરી લિસ્ટ (Completed)</h4>
-            <div id="admCompCompletedList"></div>
-          </div>
+          <h3>ફરિયાદ પોર્ટલ નિયંત્રણ</h3>
+          <div id="admCompList"></div>
         </div>
       </div>
 
-      <!-- Tab 8: Committee Photos & Responsibility -->
       <div id="admTabPhotoView" class="hidden">
         <div style="background:#0c1d31; border:1px solid var(--line); border-radius:14px; padding:18px;">
-          <h3>કમિટી સભ્ય ફોટો & જવાબદારી ફાળવણી</h3>
-          <p style="color:var(--muted); font-size:14px; margin:0 0 10px;">અહીં જે જવાબદારી લખશો, તે સભ્યો માટે ફરિયાદ પોર્ટલમાં વિષય તરીકે દેખાશે.</p>
+          <h3>કમિટી સભ્ય ફોટો & વિગત</h3>
           <select id="admMemberSelect" class="input" onchange="onAdminMemberChange()"></select>
           <input type="file" id="admMemberPhotoFile" class="input" accept="image/*" onchange="previewPhoto(this)">
           <div id="photoPreview" style="margin:10px 0; text-align:center;"></div>
-          <label style="color:var(--muted)">સોંપેલ જવાબદારી (દા.ત. લાઈટ-પાણી, ગટર-બ્લોક, સિક્યોરિટી):</label>
-          <input id="admMemberDuty" class="input" placeholder="જવાબદારી દાખલ કરો">
+          <input id="admMemberDuty" class="input" placeholder="જવાબદારી">
           <button class="btn green" onclick="saveMemberPhoto()">અપડેટ કરો</button>
         </div>
       </div>
@@ -647,6 +520,7 @@
 <div id="toast" class="toast hidden"></div>
 
 <script>
+  // તમારી સાચી API લિંક આપમેળે કનેક્ટ કરેલી છે
   const API_URL = "https://script.google.com/macros/s/AKfycbwCaiHsw_XV8YKsJXLFMdZEqARFwdgoPDSL4Lw5sClVq809M3IUF-ZEQUccdlFo3Mn8/exec";
 
   const google = {
@@ -655,30 +529,56 @@
         withSuccessHandler: function(successCb) {
           return {
             withFailureHandler: function(failureCb) {
-              function callApi(action, params = {}, payload = null) {
+              function callApi(action, params = {}, payload = null, forcePost = false) {
                 if (!API_URL || API_URL.indexOf("http") !== 0) {
                   if (failureCb) failureCb(new Error("API URL સેટ કરેલી નથી."));
                   return;
                 }
-                const q = new URLSearchParams({ action, ...params });
-                if (payload) q.append('payload', JSON.stringify(payload));
-                const url = API_URL + (API_URL.includes('?') ? '&' : '?') + q.toString();
 
-                fetch(url, { method: 'GET', redirect: 'follow' })
+                const isPost = forcePost || (payload && JSON.stringify(payload).length > 400);
+
+                if (isPost) {
+                  fetch(API_URL, {
+                    method: 'POST',
+                    redirect: 'follow',
+                    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                    body: JSON.stringify({ action: action, params: params, payload: payload })
+                  })
                   .then(res => res.text())
                   .then(text => {
                     try {
-                      const json = JSON.parse(text);
-                      if (json && json.error) {
-                        if (failureCb) failureCb(new Error(json.error));
+                      const res = JSON.parse(text);
+                      if (res && res.error) {
+                        if (failureCb) failureCb(new Error(res.error));
                       } else {
-                        if (successCb) successCb(json);
+                        if (successCb) successCb(res);
                       }
-                    } catch(err) {
-                      if (failureCb) failureCb(new Error("સર્વર પ્રતિસાદ માન્ય નથી."));
+                    } catch(e) {
+                      if (failureCb) failureCb(new Error("ડેટા સેવ કરવામાં એરર આવી છે."));
                     }
                   })
                   .catch(err => { if (failureCb) failureCb(err); });
+                } else {
+                  const q = new URLSearchParams({ action, ...params });
+                  if (payload) q.append('payload', JSON.stringify(payload));
+                  const url = API_URL + (API_URL.includes('?') ? '&' : '?') + q.toString();
+
+                  fetch(url, { method: 'GET', redirect: 'follow' })
+                    .then(res => res.text())
+                    .then(text => {
+                      try {
+                        const res = JSON.parse(text);
+                        if (res && res.error) {
+                          if (failureCb) failureCb(new Error(res.error));
+                        } else {
+                          if (successCb) successCb(res);
+                        }
+                      } catch(e) {
+                        if (failureCb) failureCb(new Error("સર્વર પ્રતિસાદ માન્ય નથી."));
+                      }
+                    })
+                    .catch(err => { if (failureCb) failureCb(err); });
+                }
               }
 
               return {
@@ -688,20 +588,19 @@
                 verifyMemberHouse: (houseNo, mobile) => callApi('verifyMemberHouse', { houseNo, mobile }),
                 createMemberAuthCode: (house, mobile) => callApi('createMemberAuthCode', {}, { house, mobile }),
                 verifyMemberAccess: (token, code, monthCode) => callApi('verifyMemberAccess', {}, { token, code, monthCode }),
-                registerComplaint: (complaintData) => callApi('registerComplaint', {}, { complaintData }),
+                registerComplaint: (complaintData) => callApi('registerComplaint', {}, { complaintData }, true),
                 verifyAdmin: (pass) => callApi('verifyAdmin', {}, { pass }),
                 getAuditRegister: (pass) => callApi('getAuditRegister', { pass }),
                 getComplaintsList: (pass) => callApi('getComplaintsList', { pass }),
                 adminSaveMonthControl: (pass, code, name, isCurrent) => callApi('adminSaveMonthControl', {}, { pass, code, name, isCurrent }),
-                adminAddDirectEntry: (pass, entryData) => callApi('adminAddDirectEntry', {}, { pass, entryData }),
-                adminDeleteDirectEntry: (pass, monthCode, type, rowIndex) => callApi('adminDeleteDirectEntry', {}, { pass, monthCode, type, rowIndex }),
-                adminSaveAnnouncement: (pass, annData) => callApi('adminSaveAnnouncement', {}, { pass, annData }),
+                adminAddDirectEntry: (pass, entryData) => callApi('adminAddDirectEntry', {}, { pass, entryData }, true),
+                adminDeleteDirectEntry: (pass, monthCode, type, row) => callApi('adminDeleteDirectEntry', {}, { pass, monthCode, type, row }),
+                adminSaveAnnouncement: (pass, annData) => callApi('adminSaveAnnouncement', {}, { pass, annData }, true),
                 adminDeleteAnnouncement: (pass, id) => callApi('adminDeleteAnnouncement', {}, { pass, id }),
                 adminSaveMeeting: (pass, meetData) => callApi('adminSaveMeeting', {}, { pass, meetData }),
                 adminDeleteMeeting: (pass, id) => callApi('adminDeleteMeeting', {}, { pass, id }),
-                adminUpdateCommitteeMember: (pass, memberData) => callApi('adminUpdateCommitteeMember', {}, { pass, memberData }),
-                adminUpdateComplaint: (pass, id, status) => callApi('adminUpdateComplaint', {}, { pass, id, status }),
-                adminGetMultiMonthSummary: (pass, fromMonth, toMonth) => callApi('adminGetMultiMonthSummary', {}, { pass, fromMonth, toMonth })
+                adminUpdateCommitteeMember: (pass, memberData) => callApi('adminUpdateCommitteeMember', {}, { pass, memberData }, true),
+                adminUpdateComplaint: (pass, id, status) => callApi('adminUpdateComplaint', {}, { pass, id, status })
               };
             }
           };
@@ -713,8 +612,7 @@
   let DATA = null, APASS = '';
   let selectedYear = 2026, selectedMonthCode = '';
   let memberAuthToken = '', memberSessionToken = '';
-  let tempPhotoBase64 = '', tempAnnPhotoBase64 = '';
-  let allComplaintsCache = [], currentSummaryData = null;
+  let tempPhotoBase64 = '';
 
   const GUJ_MONTHS = ['જાન્યુઆરી','ફેબ્રુઆરી','માર્ચ','એપ્રિલ','મે','જૂન','જુલાઈ','ઑગસ્ટ','સપ્ટેમ્બર','ઑક્ટોબર','નવેમ્બર','ડિસેમ્બર'];
 
@@ -792,7 +690,7 @@
   function loadPortalData() {
     google.script.run.withSuccessHandler(d => {
       if (d && d.error) { toast('ભૂલ: ' + d.error); return; }
-      DATA = d || {monthsList:[],announcements:[],meetings:[],committee:[],duties:[]};
+      DATA = d || {monthsList:[],announcements:[],meetings:[],committee:[]};
       renderAnnouncements(DATA.announcements);
       renderCommittee();
       setupYearDropdownInstant();
@@ -820,76 +718,20 @@
 
     const ticker = document.getElementById('mainSlideTicker');
     if (ticker) {
-      ticker.textContent = list.map(a => {
-        const tmp = document.createElement("DIV");
-        tmp.innerHTML = a.message || "";
-        return `📌 [જાહેરાત ${a.slot||1}] ${a.subject}: ${tmp.textContent || tmp.innerText || ""}`;
-      }).join('   •••   ');
+      ticker.textContent = list.map(a => `📌 [જાહેરાત ${a.slot||1}] ${a.subject}: ${a.message}`).join('   •••   ');
     }
 
     box.innerHTML = list.map((a, i) => {
       const slot = Number(a.slot) || (i + 1);
       const slotClass = slot === 1 ? 'ad-slot-1' : (slot === 2 ? 'ad-slot-2' : 'ad-slot-3');
-      const photoHtml = a.photo ? `<img class="ad-img-thumb" src="${a.photo}" alt="Ad Photo" onclick="openLightbox('${a.photo}')" title="મોટો ફોટો જોવા ક્લિક કરો">` : '';
       return `
         <div class="ad-card ${slotClass}">
           <span class="ad-badge"><i class="fa-solid fa-bullhorn"></i> જાહેરાત ${slot}</span>
           <div class="ad-heading">${a.subject}</div>
           <div class="ad-body-content">${a.message || ''}</div>
-          ${photoHtml}
         </div>
       `;
     }).join('');
-  }
-
-  function openLightbox(src) {
-    document.getElementById('lightboxTargetImg').src = src;
-    document.getElementById('photoLightboxModal').classList.remove('hidden');
-  }
-  function closeLightbox() {
-    document.getElementById('photoLightboxModal').classList.add('hidden');
-    document.getElementById('lightboxTargetImg').src = '';
-  }
-
-  function execEditorCmd(cmd) {
-    document.getElementById('annRichBody').focus();
-    document.execCommand(cmd, false, null);
-  }
-  function execEditorColor(val) {
-    document.getElementById('annRichBody').focus();
-    document.execCommand('foreColor', false, val);
-  }
-  function insertEditorTable() {
-    const html = `<table style="width:100%; border-collapse:collapse; margin:8px 0;">
-      <thead><tr style="background:rgba(255,255,255,0.1);"><th style="border:1px solid #94a3b8; padding:4px;">ક્રમ</th><th style="border:1px solid #94a3b8; padding:4px;">વિગત</th><th style="border:1px solid #94a3b8; padding:4px;">નોંધ</th></tr></thead>
-      <tbody><tr><td style="border:1px solid #94a3b8; padding:4px;">૧</td><td style="border:1px solid #94a3b8; padding:4px;">-</td><td style="border:1px solid #94a3b8; padding:4px;">-</td></tr></tbody>
-    </table><p></p>`;
-    document.getElementById('annRichBody').focus();
-    document.execCommand('insertHTML', false, html);
-  }
-
-  function previewAndCropAnnPhoto(input) {
-    if (input.files && input.files[0]) {
-      const ratio = document.getElementById('annCropRatio').value;
-      const reader = new FileReader();
-      reader.onload = function(e) {
-        const img = new Image();
-        img.onload = function() {
-          let targetW = 600, targetH = 340;
-          if (ratio === '1:1') { targetW = 400; targetH = 400; }
-          else if (ratio === 'auto') { targetW = Math.min(img.width, 600); targetH = Math.round((img.height * targetW) / img.width); }
-
-          const canvas = document.createElement('canvas');
-          canvas.width = targetW; canvas.height = targetH;
-          const ctx = canvas.getContext('2d');
-          ctx.drawImage(img, 0, 0, targetW, targetH);
-          tempAnnPhotoBase64 = canvas.toDataURL('image/jpeg', 0.72);
-          document.getElementById('annPhotoPreview').innerHTML = `<img src="${tempAnnPhotoBase64}" style="max-height:100px; border-radius:8px; border:2px solid var(--pri);">`;
-        };
-        img.src = e.target.result;
-      };
-      reader.readAsDataURL(input.files[0]);
-    }
   }
 
   function onYearChange() {
@@ -897,17 +739,7 @@
     const mSel=document.getElementById('selMonth');
     if(!ySel||!mSel)return;
     selectedYear=Number(ySel.value);
-    
-    const seen = new Set();
-    const months = [];
-    (DATA?.monthsList||[]).forEach(x => {
-      if (Number(x.year) === selectedYear && !seen.has(x.code)) {
-        seen.add(x.code);
-        months.push(x);
-      }
-    });
-    months.sort((a,b)=>b.month-a.month);
-
+    const months=(DATA?.monthsList||[]).filter(x=>Number(x.year)===selectedYear).sort((a,b)=>b.month-a.month);
     mSel.innerHTML='';
     if(!months.length){
       mSel.innerHTML='<option value="">આ વર્ષમાં હિસાબ ઉપલબ્ધ નથી</option>';
@@ -1022,7 +854,7 @@
         `<tr style="font-weight:700; background:#f1f5f9;"><td colspan="2" style="text-align:right;">કુલ આવક:</td><td class="amt-col" style="color:green;">₹ ${d.totalIncome.toLocaleString('en-IN')}</td></tr>`;
 
       const tExp = document.getElementById('tbExpBody');
-      tExp.innerHTML = d.expenseList.map(r => `<tr><td style="text-align:center;">${r.sr}</td><td>${r.desc}</td><td style="text-align:center;">${r.voucher}</td><td style="text-align:center;">${r.date}</td><td class="amt-col">₹ ${r.amount.toLocaleString('en-IN')}</td></tr>`).join('') +
+      tExp.innerHTML = d.expenseList.map(r => `<tr><td style="text-align:center;">${r.sr}</td><td>${r.desc}</td><td style="text-align:center;">${r.voucher}</td><td style="text-align:center; white-space:nowrap;">${r.date}</td><td class="amt-col">₹ ${r.amount.toLocaleString('en-IN')}</td></tr>`).join('') +
         `<tr style="font-weight:700; background:#f1f5f9;"><td colspan="4" style="text-align:right;">કુલ જાવક:</td><td class="amt-col" style="color:red;">₹ ${d.totalExpense.toLocaleString('en-IN')}</td></tr>`;
 
       document.getElementById('statementViewBox').classList.remove('hidden');
@@ -1048,7 +880,7 @@
     if (!box) return;
     box.innerHTML = (DATA?.committee || []).map(c => `
       <div class="comm-card" style="border-top:4.5px solid ${c.color || 'var(--pri)'}">
-        <img src="${c.photo || 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png'}" onclick="if('${c.photo}') openLightbox('${c.photo}')" style="cursor:pointer;" title="મોટો ફોટો જોવા ક્લિક કરો">
+        <img src="${c.photo || 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png'}">
         <div class="post">${c.post}</div>
         <div class="name">${c.name}</div>
         <div class="comm-duty"><b>જવાબદારી:</b> ${c.duty || 'સોંપેલ નથી'}</div>
@@ -1073,28 +905,8 @@
       document.getElementById('cpStep2').classList.remove('hidden');
 
       const sBox = document.getElementById('cpSubject');
-      sBox.innerHTML = '<option value="">વિષય (જવાબદારી) પસંદ કરો</option>' + 
-        (DATA?.duties || []).map(d => `<option value="${d.subject}">${d.subject}</option>`).join('') + 
-        '<option value="સામાન્ય / અન્ય">સામાન્ય / અન્ય...</option>';
-      onComplaintSubjectChange();
+      sBox.innerHTML = '<option value="">વિષય પસંદ કરો</option>' + (DATA?.duties || []).map(d => `<option value="${d.subject}">${d.subject}</option>`).join('') + '<option value="અન્ય">અન્ય...</option>';
     }).withFailureHandler(err => toast(err.message)).verifyMemberHouse(h, m);
-  }
-
-  function onComplaintSubjectChange() {
-    const s = document.getElementById('cpSubject').value;
-    const infoBox = document.getElementById('cpAssignedInfoBox');
-    if (!s || s === 'સામાન્ય / અન્ય') {
-      infoBox.classList.add('hidden');
-      return;
-    }
-    const matched = DATA?.duties?.find(d => d.subject === s);
-    if (matched) {
-      document.getElementById('cpAssignedName').textContent = `${matched.assignedName} (${matched.post})`;
-      document.getElementById('cpAssignedContact').innerHTML = `સંપર્ક: <a href="tel:${matched.mobile}" style="color:var(--pri); font-weight:700;">${matched.mobile}</a> | <a href="https://wa.me/91${matched.mobile}" target="_blank" style="color:var(--ok); font-weight:700;"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>`;
-      infoBox.classList.remove('hidden');
-    } else {
-      infoBox.classList.add('hidden');
-    }
   }
 
   function submitComplaint() {
@@ -1104,15 +916,12 @@
     const d = document.getElementById('cpDesc').value;
     if (!s || !d) return toast('વિષય અને ફરિયાદ વિગત દાખલ કરો.');
 
-    const matched = DATA?.duties?.find(x => x.subject === s);
-    const assigned = matched ? `${matched.assignedName} (${matched.mobile})` : 'વ્યવસ્થાપક સમિતિ';
-
     google.script.run.withSuccessHandler(r => {
       document.getElementById('cpResult').innerHTML = `<div style="background:#064e3b; padding:14px; border-radius:10px; color:#a7f3d0; font-size:17px;">ફરિયાદ સફળતાપૂર્વક નોંધાઈ ગઈ છે. અરજી ક્રમાંક: <b>${r.id}</b></div>`;
       document.getElementById('cpStep2').classList.add('hidden');
       document.getElementById('cpDesc').value = '';
       setTimeout(() => switchSection('home'), 4000);
-    }).withFailureHandler(err => toast(err.message)).registerComplaint({ houseNo: h, mobile: m, subject: s, desc: d, assignedTo: assigned });
+    }).withFailureHandler(err => toast(err.message)).registerComplaint({ houseNo: h, mobile: m, subject: s, desc: d });
   }
 
   function switchSection(sec) {
@@ -1158,18 +967,15 @@
   }
 
   function switchAdmTab(t) {
-    ['Entry', 'Month', 'Summary', 'Audit', 'Ann', 'Meet', 'Comp', 'Photo'].forEach(x => {
-      const el = document.getElementById('admTab' + x + 'View');
-      const btn = document.getElementById('btnAdmTab' + x);
-      if (el) el.classList.toggle('hidden', x.toLowerCase() !== t);
-      if (btn) btn.classList.toggle('active', x.toLowerCase() === t);
+    ['Entry', 'Month', 'Audit', 'Ann', 'Meet', 'Comp', 'Photo'].forEach(x => {
+      document.getElementById('admTab' + x + 'View').classList.toggle('hidden', x.toLowerCase() !== t);
+      document.getElementById('btnAdmTab' + x).classList.toggle('active', x.toLowerCase() !== t);
     });
     if (t === 'entry') loadAdminMonthEntries();
     if (t === 'audit') loadAuditRegister();
     if (t === 'ann') renderAdminAnnouncements();
     if (t === 'meet') renderAdminMeetings();
     if (t === 'comp') loadAdminComplaints();
-    if (t === 'summary') populateSummarySelectors();
   }
 
   function populateAdminControls() {
@@ -1219,12 +1025,11 @@
       onYearChange(); const ms=document.getElementById('selMonth'); if(ms.querySelector(`option[value="${f.monthCode}"]`))ms.value=f.monthCode;
       selectedMonthCode=f.monthCode; renderSingleMonthCard();
       document.getElementById('aeDesc').value=''; document.getElementById('aeAmount').value='';
-      loadAdminMonthEntries(); // Refresh table entries
+      loadAdminMonthEntries();
       toast('એન્ટ્રી સેવ થઈ અને માસવાર હિસાબ તરત અપડેટ થયો.');
     }).withFailureHandler(err=>toast(err.message||err)).adminAddDirectEntry(APASS,f);
   }
 
-  // --- NEW: Load Current Entries for Selected Month to Delete ---
   function loadAdminMonthEntries() {
     const y = document.getElementById('aeYearSelect')?.value;
     const m = document.getElementById('aeMonthSelect')?.value;
@@ -1236,7 +1041,7 @@
 
     google.script.run.withSuccessHandler(d => {
       if (!d || (!d.incomeList?.length && !d.expenseList?.length)) {
-        box.innerHTML = `<div style="text-align:center; color:var(--muted); padding:10px; font-size:14px;">આ માસમાં કોઈ આવક કે જાવક એન્ટ્રી મળેલ નથી.</div>`;
+        box.innerHTML = `<div style="text-align:center; color:var(--muted); padding:10px; font-size:14px;">આ માસમાં કોઈ એન્ટ્રી નથી.</div>`;
         return;
       }
 
@@ -1251,7 +1056,6 @@
         </thead>
         <tbody>`;
 
-      // Render Income rows
       (d.incomeList || []).forEach(inc => {
         html += `
           <tr style="border-bottom:1px solid var(--line);">
@@ -1259,14 +1063,13 @@
             <td style="padding:6px; color:#fff; border:1px solid var(--line);">${inc.desc}</td>
             <td style="padding:6px; color:#10b981; font-weight:700; text-align:right; font-family:monospace; border:1px solid var(--line);">₹ ${Number(inc.amount).toLocaleString('en-IN')}</td>
             <td style="padding:6px; text-align:center; border:1px solid var(--line);">
-              <button class="btn red" style="padding:3px 8px; font-size:12px; border-radius:6px;" onclick="confirmDeleteEntry('${monthCode}', 'આવક', ${inc.row || inc.sr || 0}, '${inc.desc.replace(/'/g, "\\'")}')">
+              <button class="btn red" style="padding:3px 8px; font-size:12px; border-radius:6px;" onclick="confirmDeleteEntry('${monthCode}', 'આવક', ${inc.row}, '${inc.desc.replace(/'/g, "\\'")}')">
                 <i class="fa-solid fa-trash"></i> ડિલીટ
               </button>
             </td>
           </tr>`;
       });
 
-      // Render Expense rows
       (d.expenseList || []).forEach(exp => {
         html += `
           <tr style="border-bottom:1px solid var(--line);">
@@ -1274,7 +1077,7 @@
             <td style="padding:6px; color:#fff; border:1px solid var(--line);">${exp.desc} ${exp.voucher ? `(વાઉચર: ${exp.voucher})` : ''}</td>
             <td style="padding:6px; color:#ef4444; font-weight:700; text-align:right; font-family:monospace; border:1px solid var(--line);">₹ ${Number(exp.amount).toLocaleString('en-IN')}</td>
             <td style="padding:6px; text-align:center; border:1px solid var(--line);">
-              <button class="btn red" style="padding:3px 8px; font-size:12px; border-radius:6px;" onclick="confirmDeleteEntry('${monthCode}', 'જાવક', ${exp.row || exp.sr || 0}, '${exp.desc.replace(/'/g, "\\'")}')">
+              <button class="btn red" style="padding:3px 8px; font-size:12px; border-radius:6px;" onclick="confirmDeleteEntry('${monthCode}', 'જાવક', ${exp.row}, '${exp.desc.replace(/'/g, "\\'")}')">
                 <i class="fa-solid fa-trash"></i> ડિલીટ
               </button>
             </td>
@@ -1284,12 +1087,11 @@
       html += `</tbody></table>`;
       box.innerHTML = html;
     }).withFailureHandler(err => {
-      box.innerHTML = `<div style="color:var(--danger); text-align:center; padding:10px;">એન્ટ્રી લોડ કરવામાં ભૂલ: ${err.message}</div>`;
+      box.innerHTML = `<div style="color:var(--danger); text-align:center; padding:10px;">એન્ટ્રી લોડ કરવામાં ક્ષતિ: ${err.message}</div>`;
     }).getPublicStatement(monthCode);
   }
 
-  // --- NEW: Delete Entry Handler ---
-  function confirmDeleteEntry(monthCode, type, rowIndex, desc) {
+  function confirmDeleteEntry(monthCode, type, rowIdx, desc) {
     if (!confirm(`શું તમે આ એન્ટ્રી કાઢી નાખવા માંગો છો?\nપ્રકાર: ${type}\nવિગત: ${desc}`)) return;
 
     toast('એન્ટ્રી ડિલીટ થઈ રહી છે...');
@@ -1299,10 +1101,10 @@
       populateAdminControls();
       populateAdminEntrySelectors();
       renderSingleMonthCard();
-      loadAdminMonthEntries(); // reload table
+      loadAdminMonthEntries();
       toast('એન્ટ્રી સફળતાપૂર્વક કાઢી નાખવામાં આવી.');
     }).withFailureHandler(err => toast('ડિલીટ કરવામાં ભૂલ: ' + err.message))
-      .adminDeleteDirectEntry(APASS, monthCode, type, rowIndex);
+      .adminDeleteDirectEntry(APASS, monthCode, type, rowIdx);
   }
 
   function saveAdminMonth() {
@@ -1319,122 +1121,6 @@
       selectedMonthCode=code; renderSingleMonthCard();
       toast(`${name} ની શીટ સફળતાપૂર્વક તૈયાર થઈ.`);
     }).withFailureHandler(err=>toast(err.message||err)).adminSaveMonthControl(APASS,code,name,isPub);
-  }
-
-  function populateSummarySelectors() {
-    const sFrom = document.getElementById('smFromMonth');
-    const sTo = document.getElementById('smToMonth');
-    if (!sFrom || !sTo) return;
-    const list = DATA?.monthsList || [];
-    const opts = list.map(m => `<option value="${m.code}">${m.name}</option>`).join('');
-    sFrom.innerHTML = opts;
-    sTo.innerHTML = opts;
-    if (list.length > 1) sTo.value = list[0].code;
-  }
-
-  function fetchMultiMonthSummary() {
-    const fm = document.getElementById('smFromMonth').value;
-    const tm = document.getElementById('smToMonth').value;
-    google.script.run.withSuccessHandler(res => {
-      currentSummaryData = res;
-      renderSummaryTable(res);
-    }).withFailureHandler(err => toast(err.message)).adminGetMultiMonthSummary(APASS, fm, tm);
-  }
-
-  function renderSummaryTable(data) {
-    const box = document.getElementById('multiSummaryBox');
-    if (!data || !data.summaryList || !data.summaryList.length) {
-      box.innerHTML = '<div style="color:var(--muted)">આ સમયગાળામાં કોઈ હિસાબ મળ્યો નથી.</div>';
-      return;
-    }
-
-    if (!data.isSingleMonth) {
-      box.innerHTML = `
-        <div id="multiSummaryPrintArea" class="sheet-paper" style="color:#000;">
-          <h3 style="text-align:center; margin:0 0 4px;">શાંતિકુંજ બંગ્લોઝ, વિજાપુર</h3>
-          <p style="text-align:center; color:#555; margin:0 0 16px;">સંયુક્ત હિસાબ સરવૈયું (${data.summaryList[0].name} થી ${data.summaryList[data.summaryList.length - 1].name})</p>
-          
-          <div class="stats-grid" style="margin-bottom:16px;">
-            <div class="stat-box stat-inc">
-              <small>કુલ આવક (સમયગાળો)</small>
-              <strong>₹ ${data.totalIncome.toLocaleString('en-IN')}</strong>
-            </div>
-            <div class="stat-box stat-exp">
-              <small>કુલ જાવક (સમયગાળો)</small>
-              <strong>₹ ${data.totalExpense.toLocaleString('en-IN')}</strong>
-            </div>
-            <div class="stat-box stat-bal">
-              <small>હાથ પર વધેલ સિલક</small>
-              <strong>₹ ${data.totalBalance.toLocaleString('en-IN')}</strong>
-            </div>
-          </div>
-
-          <table>
-            <thead>
-              <tr style="background:#e2e8f0;">
-                <th>વિગત</th>
-                <th style="text-align:right;">કુલ રકમ (₹)</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><b>આવક (સર્વ માસ એકત્રિત):</b></td>
-                <td class="amt-col" style="color:green;">₹ ${data.totalIncome.toLocaleString('en-IN')}</td>
-              </tr>
-              <tr>
-                <td><b>જાવક / ખર્ચ (સર્વ માસ એકત્રિત):</b></td>
-                <td class="amt-col" style="color:red;">₹ ${data.totalExpense.toLocaleString('en-IN')}</td>
-              </tr>
-              <tr style="font-weight:700; background:#f8fafc; font-size:17px;">
-                <td>ચોખ્ખી વધેલ સિલક:</td>
-                <td class="amt-col" style="color:blue;">₹ ${data.totalBalance.toLocaleString('en-IN')}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      `;
-    } else {
-      const m = data.summaryList[0];
-      box.innerHTML = `
-        <div id="multiSummaryPrintArea" class="sheet-paper" style="color:#000;">
-          <h3 style="text-align:center; margin:0 0 10px;">${m.name} - હિસાબ સરવૈયું</h3>
-          <table>
-            <thead>
-              <tr><th>માસ</th><th>કુલ આવક (₹)</th><th>કુલ જાવક (₹)</th><th>જમા સિલક (₹)</th></tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><b>${m.name}</b></td>
-                <td class="amt-col" style="color:green;">₹ ${m.income.toLocaleString('en-IN')}</td>
-                <td class="amt-col" style="color:red;">₹ ${m.expense.toLocaleString('en-IN')}</td>
-                <td class="amt-col" style="color:blue;">₹ ${m.balance.toLocaleString('en-IN')}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      `;
-    }
-  }
-
-  function exportSummaryCSV() {
-    if (!currentSummaryData || !currentSummaryData.summaryList) return toast('પહેલા સરવૈયું શોધો.');
-    let csv = "વિગત,રકમ (₹)\n";
-    csv += `"કુલ આવક",${currentSummaryData.totalIncome}\n`;
-    csv += `"કુલ જાવક",${currentSummaryData.totalExpense}\n`;
-    csv += `"વધેલ સિલક",${currentSummaryData.totalBalance}\n`;
-
-    const blob = new Blob(["\ufeff" + csv], { type: 'text/csv;charset=utf-8;' });
-    const link = document.createElement("a");
-    link.href = URL.createObjectURL(blob);
-    link.setAttribute("download", "Shantikunj_Summary.csv");
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  }
-
-  function printMultiSummary() {
-    if (!currentSummaryData) return toast('પહેલા સરવૈયું શોધો.');
-    window.print();
   }
 
   function loadAuditRegister() {
@@ -1456,58 +1142,30 @@
   function renderAdminAnnouncements() {
     const box = document.getElementById('admAnnList');
     box.innerHTML = (DATA?.announcements || []).map(a => `
-      <div style="background:#081525; padding:12px; border-radius:8px; margin-bottom:10px; border-left:3px solid var(--gold);">
-        <span class="ad-badge">સ્લોટ: જાહેરાત ${a.slot||1}</span>
+      <div style="background:#081525; padding:10px; border-radius:8px; margin-bottom:8px; border-left:3px solid var(--gold);">
+        <span class="ad-badge" style="background:#0284c7; color:#fff; font-size:12px; padding:2px 8px; border-radius:4px;">સ્લોટ ${a.slot||1}</span>
         <b>${a.subject}</b>
-        <div style="margin:4px 0; font-size:15px; color:var(--muted);">${a.message}</div>
-        ${a.photo ? `<img src="${a.photo}" style="max-height:80px; border-radius:6px; margin:4px 0; display:block; cursor:pointer;" onclick="openLightbox('${a.photo}')">` : ''}
-        <div style="display:flex; gap:8px; margin-top:8px;">
-          <button class="btn gold" style="padding:4px 12px; font-size:13px;" onclick="editAnnouncement('${a.id}')"><i class="fa-solid fa-pen"></i> એડિટ</button>
-          <button class="btn red" style="padding:4px 12px; font-size:13px;" onclick="deleteAnnouncement('${a.id}')"><i class="fa-solid fa-trash"></i> ડિલીટ</button>
-        </div>
+        <p style="margin:4px 0; font-size:15px;">${a.message}</p>
+        <button class="btn red" style="padding:4px 10px; font-size:13px;" onclick="deleteAnnouncement('${a.id}')">ડિલીટ</button>
       </div>
     `).join('') || '<div style="color:var(--muted)">કોઈ જાહેરાત નથી.</div>';
   }
 
-  function editAnnouncement(id) {
-    const ann = DATA?.announcements?.find(x => String(x.id) === String(id));
-    if (!ann) return;
-    document.getElementById('annFormTitle').innerHTML = '<i class="fa-solid fa-pen"></i> જાહેરાત સુધારો (Edit)';
-    document.getElementById('annEditId').value = ann.id;
-    document.getElementById('annSlot').value = ann.slot || 1;
-    document.getElementById('annSub').value = ann.subject;
-    document.getElementById('annRichBody').innerHTML = ann.message || '';
-    tempAnnPhotoBase64 = ann.photo || '';
-    document.getElementById('annPhotoPreview').innerHTML = tempAnnPhotoBase64 ? `<img src="${tempAnnPhotoBase64}" style="max-height:90px; border-radius:8px;">` : '';
-    document.getElementById('btnSaveAnn').innerHTML = '<i class="fa-solid fa-check"></i> સુધારો સેવ કરો';
-    document.getElementById('btnCancelEditAnn').classList.remove('hidden');
-  }
-
-  function cancelEditAnn() {
-    document.getElementById('annFormTitle').innerHTML = '<i class="fa-solid fa-wand-magic-sparkles"></i> આકર્ષક જાહેરાત ક્રિએટર / એડિટર';
-    document.getElementById('annEditId').value = '';
-    document.getElementById('annSub').value = '';
-    document.getElementById('annRichBody').innerHTML = '';
-    tempAnnPhotoBase64 = '';
-    document.getElementById('annPhotoPreview').innerHTML = '';
-    document.getElementById('btnSaveAnn').innerHTML = '<i class="fa-solid fa-floppy-disk"></i> જાહેરાત સેવ કરો';
-    document.getElementById('btnCancelEditAnn').classList.add('hidden');
-  }
-
   function saveAnnouncement() {
     const f = {
-      id: document.getElementById('annEditId').value,
-      slot: Number(document.getElementById('annSlot').value) || 1,
+      slot: document.getElementById('annSlot').value,
       subject: document.getElementById('annSub').value.trim(),
-      message: document.getElementById('annRichBody').innerHTML.trim(),
-      photo: tempAnnPhotoBase64
+      message: document.getElementById('annMsg').value.trim()
     };
     if (!f.subject || !f.message) return toast('વિષય અને લખાણ દાખલ કરો.');
 
+    toast('જાહેરાત સેવ થઈ રહી છે...');
     google.script.run.withSuccessHandler(d => {
-      DATA = d; renderAnnouncements(d.announcements); renderAdminAnnouncements(); cancelEditAnn();
+      DATA = d; renderAnnouncements(d.announcements); renderAdminAnnouncements();
+      document.getElementById('annSub').value = '';
+      document.getElementById('annMsg').value = '';
       toast('જાહેરાત સફળતાપૂર્વક સેવ થઈ ગઈ.');
-    }).withFailureHandler(err => toast(err.message)).adminSaveAnnouncement(APASS, f);
+    }).withFailureHandler(err => toast('એરર: ' + err.message)).adminSaveAnnouncement(APASS, f);
   }
 
   function deleteAnnouncement(id) {
@@ -1555,58 +1213,22 @@
 
   function loadAdminComplaints() {
     google.script.run.withSuccessHandler(list => {
-      allComplaintsCache = list || [];
-      renderSplitComplaints();
+      const box = document.getElementById('admCompList');
+      box.innerHTML = list.map(c => `
+        <div style="background:#081525; padding:12px; border-radius:8px; margin-bottom:8px; border-left:4px solid ${c.status === 'પૂર્ણ' ? 'var(--ok)' : 'var(--danger)'};">
+          <b>${c.id} (મકાન નં. ${c.houseNo})</b> - <i>${c.subject}</i>
+          <p style="margin:4px 0; font-size:15px;">${c.desc}</p>
+          ${c.status !== 'પૂર્ણ' ? `<button class="btn green" style="padding:4px 10px; font-size:13px;" onclick="completeComplaint('${c.id}')">પૂર્ણ માર્ક કરો</button>` : '<span style="color:var(--ok)">પૂર્ણ</span>'}
+        </div>
+      `).join('') || '<div style="color:var(--muted)">કોઈ ફરિયાદ નથી.</div>';
     }).withFailureHandler(err => toast(err.message)).getComplaintsList(APASS);
-  }
-
-  function renderSplitComplaints() {
-    const pBox = document.getElementById('admCompPendingList');
-    const cBox = document.getElementById('admCompCompletedList');
-
-    const pending = allComplaintsCache.filter(c => c.status !== 'પૂર્ણ');
-    const completed = allComplaintsCache.filter(c => c.status === 'પૂર્ણ');
-
-    pBox.innerHTML = pending.map(c => `
-      <div style="background:#081525; padding:12px; border-radius:8px; margin-bottom:8px; border-left:4px solid var(--danger);">
-        <b>${c.id} (મકાન નં. ${c.houseNo})</b> - <i>${c.subject}</i>
-        <p style="margin:4px 0; font-size:15px;">${c.desc}</p>
-        <div style="font-size:14px; color:var(--muted); margin-bottom:8px;">તારીખ: ${c.date} • નામ: ${c.name} • જવાબદાર: ${c.assignedTo || 'કમિટી'}</div>
-        <button class="btn green" style="padding:5px 12px; font-size:13px;" onclick="completeComplaint('${c.id}')"><i class="fa-solid fa-check"></i> પૂર્ણ માર્ક કરો</button>
-      </div>
-    `).join('') || '<div style="color:var(--muted)">કોઈ પેન્ડિંગ ફરિયાદ નથી.</div>';
-
-    cBox.innerHTML = completed.map(c => `
-      <div style="background:#081525; padding:12px; border-radius:8px; margin-bottom:8px; border-left:4px solid var(--ok);">
-        <b>${c.id} (મકાન નં. ${c.houseNo})</b> - <i>${c.subject}</i>
-        <p style="margin:4px 0; font-size:15px;">${c.desc}</p>
-        <div style="font-size:14px; color:var(--muted);">તારીખ: ${c.date} • પૂર્ણ તારીખ: ${c.completedAt || '-'} • નામ: ${c.name}</div>
-        <span style="color:var(--ok); font-weight:700; font-size:14px;"><i class="fa-solid fa-circle-check"></i> પૂર્ણ થયેલ</span>
-      </div>
-    `).join('') || '<div style="color:var(--muted)">કોઈ પૂર્ણ થયેલી ફરિયાદ નથી.</div>';
   }
 
   function completeComplaint(id) {
     google.script.run.withSuccessHandler(list => {
-      allComplaintsCache = list;
-      renderSplitComplaints();
-      toast('ફરિયાદ સફળતાપૂર્વક પૂર્ણ લિસ્ટમાં ખસેડાઈ ગઈ.');
+      loadAdminComplaints();
+      toast('ફરિયાદ પૂર્ણ થઈ.');
     }).withFailureHandler(err => toast(err.message)).adminUpdateComplaint(APASS, id, 'પૂર્ણ');
-  }
-
-  function exportComplaintsCSV() {
-    if (!allComplaintsCache || !allComplaintsCache.length) return toast('કોઈ ફરિયાદ રેકોર્ડ નથી.');
-    let csv = "ID,તારીખ,મકાન નં,નામ,મોબાઈલ,વિષય,ફરિયાદ,સ્થિતિ,જવાબદાર,પૂર્ણ_સમય\n";
-    allComplaintsCache.forEach(c => {
-      csv += `"${c.id}","${c.date}","${c.houseNo}","${c.name}","${c.mobile}","${c.subject}","${c.desc.replace(/"/g, '""')}","${c.status}","${c.assignedTo}","${c.completedAt}"\n`;
-    });
-    const blob = new Blob(["\ufeff" + csv], { type: 'text/csv;charset=utf-8;' });
-    const link = document.createElement("a");
-    link.href = URL.createObjectURL(blob);
-    link.setAttribute("download", "Shantikunj_Complaints_Report.csv");
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
   }
 
   function onAdminMemberChange() {
@@ -1622,16 +1244,8 @@
     if (input.files && input.files[0]) {
       const reader = new FileReader();
       reader.onload = function(e) {
-        const img = new Image();
-        img.onload = function() {
-          const canvas = document.createElement('canvas');
-          canvas.width = 180; canvas.height = 180;
-          const ctx = canvas.getContext('2d');
-          ctx.drawImage(img, 0, 0, 180, 180);
-          tempPhotoBase64 = canvas.toDataURL('image/jpeg', 0.72);
-          document.getElementById('photoPreview').innerHTML = `<img src="${tempPhotoBase64}" style="width:75px; height:75px; border-radius:50%; object-fit:cover; border:2px solid var(--pri);">`;
-        };
-        img.src = e.target.result;
+        tempPhotoBase64 = e.target.result;
+        document.getElementById('photoPreview').innerHTML = `<img src="${tempPhotoBase64}" style="width:75px; height:75px; border-radius:50%; object-fit:cover;">`;
       };
       reader.readAsDataURL(input.files[0]);
     }
@@ -1639,12 +1253,12 @@
 
   function saveMemberPhoto() {
     const row = document.getElementById('admMemberSelect').value;
-    const duty = document.getElementById('admMemberDuty').value.trim();
-    toast('અપડેટ થઈ રહ્યું છે, કૃપા કરી રાહ જુઓ...');
+    const duty = document.getElementById('admMemberDuty').value;
+    toast('અપડેટ થઈ રહ્યું છે...');
     google.script.run.withSuccessHandler(d => {
       DATA = d; renderCommittee(); populateAdminControls();
-      toast('કમિટી વિગતો અને જવાબદારી સફળતાપૂર્વક અપડેટ થઈ ગઈ.');
-    }).withFailureHandler(err => toast('એરર: ' + err.message)).adminUpdateCommitteeMember(APASS, { row: row, photo: tempPhotoBase64, duty: duty });
+      toast('કમિટી વિગતો અપડેટ થઈ ગઈ.');
+    }).withFailureHandler(err => toast(err.message)).adminUpdateCommitteeMember(APASS, { row: row, photo: tempPhotoBase64, duty: duty });
   }
 
   window.startClock=startClock; window.setupYearDropdownInstant=setupYearDropdownInstant; window.loadPortalData=loadPortalData;
@@ -1652,16 +1266,11 @@
   window.openAdminModal=openAdminModal; window.closeAdminModal=closeAdminModal; window.togglePasswordView=togglePasswordView;
   window.doAdminLogin=doAdminLogin; window.adminLogout=adminLogout; window.switchAdmTab=switchAdmTab;
   window.saveDirectEntry=saveDirectEntry; window.saveAdminMonth=saveAdminMonth; window.saveAnnouncement=saveAnnouncement;
-  window.editAnnouncement=editAnnouncement; window.cancelEditAnn=cancelEditAnn; window.deleteAnnouncement=deleteAnnouncement;
-  window.previewAndCropAnnPhoto=previewAndCropAnnPhoto; window.openLightbox=openLightbox; window.closeLightbox=closeLightbox;
-  window.execEditorCmd=execEditorCmd; window.execEditorColor=execEditorColor; window.insertEditorTable=insertEditorTable;
-  window.saveMeeting=saveMeeting; window.deleteMeeting=deleteMeeting;
-  window.lookupComplaintHouse=lookupComplaintHouse; window.onComplaintSubjectChange=onComplaintSubjectChange;
-  window.submitComplaint=submitComplaint; window.completeComplaint=completeComplaint; window.exportComplaintsCSV=exportComplaintsCSV;
-  window.onAdminMemberChange=onAdminMemberChange; window.previewPhoto=previewPhoto;
-  window.saveMemberPhoto=saveMemberPhoto; window.toggleMemberLoginPanel=toggleMemberLoginPanel; window.reqAuthCode=reqAuthCode;
-  window.submitAuthCode=submitAuthCode; window.openStatement=openStatement; window.closeStatementAndHome=closeStatementAndHome;
-  window.fetchMultiMonthSummary=fetchMultiMonthSummary; window.exportSummaryCSV=exportSummaryCSV; window.printMultiSummary=printMultiSummary;
+  window.deleteAnnouncement=deleteAnnouncement; window.saveMeeting=saveMeeting; window.deleteMeeting=deleteMeeting;
+  window.lookupComplaintHouse=lookupComplaintHouse; window.submitComplaint=submitComplaint; window.completeComplaint=completeComplaint;
+  window.onAdminMemberChange=onAdminMemberChange; window.previewPhoto=previewPhoto; window.saveMemberPhoto=saveMemberPhoto;
+  window.toggleMemberLoginPanel=toggleMemberLoginPanel; window.reqAuthCode=reqAuthCode; window.submitAuthCode=submitAuthCode;
+  window.openStatement=openStatement; window.closeStatementAndHome=closeStatementAndHome;
   window.loadAdminMonthEntries=loadAdminMonthEntries; window.confirmDeleteEntry=confirmDeleteEntry;
 </script>
 </body>
